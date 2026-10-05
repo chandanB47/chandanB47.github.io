@@ -22,3 +22,21 @@ if(heroVisual && heroCard && window.matchMedia('(pointer:fine)').matches){
   });
   heroVisual.addEventListener('mouseleave',()=>{heroCard.style.transform='translateZ(45px) rotateY(-5deg) rotateX(0deg)'});
 }
+
+const scene=document.querySelector('.scene');
+const auroras=[...document.querySelectorAll('.aurora')];
+const rings=[...document.querySelectorAll('.depth-ring')];
+const gridFloor=document.querySelector('.grid-floor');
+const particles=[...document.querySelectorAll('.data-particle')];
+let scrollTick=false;
+function updateDepth(){
+  const y=window.scrollY;
+  if(scene) scene.style.transform=`translate3d(0,${y*0.015}px,0)`;
+  auroras.forEach((el,i)=>{const d=[0.035,-0.022,0.018][i]||0.02;el.style.transform=`translate3d(${Math.sin(y*.002+i)*18}px,${y*d}px,0)`});
+  rings.forEach((el,i)=>{el.style.transform=`translate(-50%,calc(-50% + ${y*(.018+i*.008)}px)) rotateX(68deg) rotateZ(${y*(.015+i*.006)}deg)`});
+  if(gridFloor) gridFloor.style.backgroundPosition=`0 ${y*.22}px`;
+  particles.forEach((el,i)=>{el.style.transform=`translate3d(${Math.sin(y*.004+i)*18}px,${-y*(.018+i*.004)}px,0)`});
+  scrollTick=false;
+}
+window.addEventListener('scroll',()=>{if(!scrollTick){requestAnimationFrame(updateDepth);scrollTick=true}},{passive:true});
+updateDepth();

@@ -49,3 +49,14 @@ The contact button uses a Gmail compose URL instead of `mailto:` so visitors are
 - Glass analytics card with pointer-based 3D tilt
 - Native browser mouse pointer retained; no custom cursor
 - Reduced-motion support
+
+
+## V6 visual direction
+- Premium light/ivory background instead of neon black
+- Lime + indigo accent palette
+- 3D perspective grid and depth rings
+- Animated aurora lighting
+- Scroll-driven parallax so the background visibly moves with page scrolling
+- Floating depth objects
+- Native mouse pointer
+- Responsive and reduced-motion friendly
