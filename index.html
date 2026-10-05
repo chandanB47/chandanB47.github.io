@@ -12,8 +12,23 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="cursor-dot"></div>
-  <div class="cursor-ring"></div>
+  <div class="scene" aria-hidden="true">
+    <div class="aurora aurora-1"></div>
+    <div class="aurora aurora-2"></div>
+    <div class="aurora aurora-3"></div>
+    <div class="grid-floor"></div>
+    <div class="depth-ring ring-1"></div>
+    <div class="depth-ring ring-2"></div>
+    <div class="depth-ring ring-3"></div>
+    <div class="float-cube cube-1"></div>
+    <div class="float-cube cube-2"></div>
+    <div class="float-cube cube-3"></div>
+    <div class="data-particle p1"></div>
+    <div class="data-particle p2"></div>
+    <div class="data-particle p3"></div>
+    <div class="data-particle p4"></div>
+    <div class="data-particle p5"></div>
+  </div>
   <div class="noise"></div>
 
   <header class="nav">
@@ -43,18 +58,21 @@
         </div>
       </div>
       <div class="hero-visual reveal delay-2">
+        <div class="hero-3d-grid"></div>
         <div class="orb orb-a"></div>
         <div class="orb orb-b"></div>
-        <div class="data-card">
+        <div class="data-orbit orbit-a"></div>
+        <div class="data-orbit orbit-b"></div>
+        <div class="data-card-wrap"><div class="data-card">
           <div class="data-top"><span>ANALYST.PROFILE</span><span>LIVE</span></div>
           <div class="metric"><strong>SQL</strong><div class="bar"><i style="width:88%"></i></div><small>Analytics</small></div>
           <div class="metric"><strong>BI</strong><div class="bar"><i style="width:82%"></i></div><small>Power BI</small></div>
           <div class="metric"><strong>EXCEL</strong><div class="bar"><i style="width:90%"></i></div><small>Reporting</small></div>
           <div class="metric"><strong>PY</strong><div class="bar"><i style="width:65%"></i></div><small>Automation</small></div>
           <div class="terminal-line"><span>$</span> finding_patterns<span class="blink">_</span></div>
-        </div>
+        </div></div>
       </div>
-      <div class="scroll-cue"><span></span> SCROLL TO EXPLORE</div>
+      <div class="scroll-cue"><span></span> SCROLL TO EXPLORE</div><div class="hero-depth-label">DATA / INSIGHT / IMPACT</div>
     </section>
 
     <section class="ticker" aria-label="Skills">
@@ -198,11 +216,12 @@
         <h2>Let's make the<br><em>numbers useful.</em></h2>
         <p>Have a role, project or analytics problem? I'd like to hear about it.</p>
         <div class="contact-actions">
-          <a class="btn btn-primary magnetic" href="mailto:chandanb.dev@gmail.com">Email me ↗</a>
-          <a class="btn btn-ghost magnetic" href="https://github.com/chandanB47" target="_blank" rel="noopener">GitHub ↗</a>
+          <a class="btn btn-primary magnetic" href="https://mail.google.com/mail/?view=cm&fs=1&to=chandanb.dev@gmail.com" target="_blank" rel="noopener">Email me ↗</a>
           <a class="btn btn-ghost magnetic" href="https://www.linkedin.com/in/chandan47" target="_blank" rel="noopener">LinkedIn ↗</a>
+          <button class="btn btn-ghost magnetic copy-email" type="button" data-email="chandanb.dev@gmail.com">Copy email</button>
         </div>
-        <small>Resume, email and LinkedIn are configured. Add project screenshots as the next portfolio upgrade.</small>
+        <div class="copied-message" aria-live="polite"></div>
+        <small>Email opens Gmail in your browser. Resume and LinkedIn are configured.</small>
       </div>
     </section>
   </main>

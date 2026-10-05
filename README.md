@@ -34,3 +34,18 @@ Live URL: https://chandanB47.github.io
 
 ## Deployment
 Upload `index.html`, `style.css`, `script.js`, `README.md`, and `resume.pdf` to the repository root.
+
+
+## V4 contact fix
+The contact button uses a Gmail compose URL instead of `mailto:` so visitors are not forced to configure a Windows mail application. A Copy email button is also included.
+
+
+## V5 visual direction
+- Immersive animated 3D-style background
+- Perspective grid floor
+- Floating depth objects and particles
+- Aurora lighting layers
+- 3D orbital rings
+- Glass analytics card with pointer-based 3D tilt
+- Native browser mouse pointer retained; no custom cursor
+- Reduced-motion support
