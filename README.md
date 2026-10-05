@@ -60,3 +60,14 @@ The contact button uses a Gmail compose URL instead of `mailto:` so visitors are
 - Floating depth objects
 - Native mouse pointer
 - Responsive and reduced-motion friendly
+
+
+## V7 — Premium Smooth Edition
+- Ivory + Midnight Navy + Champagne Gold + Cobalt palette
+- Alternating light/dark sections for stronger hierarchy
+- Smooth anchor navigation with fixed-header offset
+- Lightweight IntersectionObserver reveal animations
+- No continuous scroll-parallax JavaScript
+- No WebGL/Vanta background
+- Native mouse pointer
+- Reduced-motion support
