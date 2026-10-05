@@ -71,3 +71,12 @@ The contact button uses a Gmail compose URL instead of `mailto:` so visitors are
 - No WebGL/Vanta background
 - Native mouse pointer
 - Reduced-motion support
+
+
+## V8 — Cinematic Data Horizon
+- Replaced the analyst profile card with a lightweight cinematic data-landscape hero visual.
+- Added GitHub and LinkedIn links in header, hero and contact.
+- Full email address is visible in the contact CTA.
+- Added visible scroll progress and stronger section reveal animations.
+- Scroll animation is IntersectionObserver/requestAnimationFrame based; no WebGL/Vanta background.
+- Hero visual uses CSS/SVG only for lower CPU/GPU cost.
