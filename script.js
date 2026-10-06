@@ -13,6 +13,11 @@
     reveals.forEach(el => io.observe(el));
   } else reveals.forEach(el => el.classList.add('visible'));
 
+  // Native page scrolling stays enabled; animation code never captures wheel/touch scrolling.
+  document.documentElement.style.overflowY = 'auto';
+  document.body.style.overflowY = 'auto';
+  document.documentElement.style.overscrollBehaviorY = 'auto';
+
   // Scroll progress
   const progress = $('.scroll-progress span');
   let scrollTick = false;
