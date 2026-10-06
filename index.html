@@ -4,250 +4,106 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Chandan B — Data Analyst portfolio. SQL, Power BI, Excel and Python.">
-  <meta name="theme-color" content="#0C1930">
+  <meta name="theme-color" content="#070707">
   <title>Chandan B — Data Analyst</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,600;1,700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="scroll-progress" aria-hidden="true"><span></span></div>
-  <div class="scene" aria-hidden="true">
-    <div class="aurora aurora-1"></div>
-    <div class="aurora aurora-2"></div>
-    <div class="aurora aurora-3"></div>
-    <div class="grid-floor"></div>
-    <div class="depth-ring ring-1"></div>
-    <div class="depth-ring ring-2"></div>
-    <div class="depth-ring ring-3"></div>
-    <div class="float-cube cube-1"></div>
-    <div class="float-cube cube-2"></div>
-    <div class="float-cube cube-3"></div>
-    <div class="data-particle p1"></div>
-    <div class="data-particle p2"></div>
-    <div class="data-particle p3"></div>
-    <div class="data-particle p4"></div>
-    <div class="data-particle p5"></div>
-  </div>
-  <div class="noise"></div>
+  <div class="cursor-glow"></div>
+  <div class="scroll-progress"><span></span></div>
+  <canvas id="particle-canvas" aria-hidden="true"></canvas>
+  <div class="noise" aria-hidden="true"></div>
 
   <header class="nav">
-    <a class="brand" href="#home">CHANDAN<span>B</span><i>•</i></a>
-    <nav>
-      <a href="#about">About</a>
-      <a href="#skills">Stack</a>
-      <a href="#work">Work</a>
-      <a href="#contact">Contact</a>
+    <a class="brand" href="#home"><span class="brand-mark">CB</span><span>CHANDAN B</span></a>
+    <nav class="nav-links">
+      <a href="#about">About</a><a href="#stack">Stack</a><a href="#work">Work</a><a href="#contact">Contact</a>
     </nav>
-    <div class="nav-right">
-      <a class="social-mini" href="https://github.com/chandanB47" target="_blank" rel="noopener">GitHub ↗</a>
-      <a class="social-mini" href="https://www.linkedin.com/in/chandan47" target="_blank" rel="noopener">LinkedIn ↗</a>
-      <a class="availability" href="#contact"><span></span>Open to opportunities</a>
-      <button class="menu" aria-label="Open menu">☰</button>
+    <div class="nav-end">
+      <span class="status"><i></i> Available</span>
+      <a class="nav-cta" href="#contact">Let's talk <span>↗</span></a>
+      <button class="menu" aria-label="Toggle navigation">☰</button>
     </div>
   </header>
 
   <main>
     <section id="home" class="hero">
-      <div class="hero-grid"></div>
-      <div class="hero-copy reveal">
-        <div class="kicker"><span class="line"></span> DATA ANALYST / INDIA</div>
-        <h1>I turn <em>messy data</em><br>into useful decisions.</h1>
-        <p class="hero-sub">SQL analysis, Power BI dashboards, Excel reporting and practical Python — built around real business questions, not just charts.</p>
+      <div class="hero-image" aria-hidden="true"></div>
+      <div class="hero-vignette" aria-hidden="true"></div>
+      <div class="hero-orbit orbit-a" aria-hidden="true"></div>
+      <div class="hero-orbit orbit-b" aria-hidden="true"></div>
+      <div class="hero-content reveal visible">
+        <div class="eyebrow"><span></span> DATA ANALYST / INDIA</div>
+        <h1>Turning <em>data</em><br>into <strong>direction.</strong></h1>
+        <p>SQL, Power BI, Excel and practical Python — designed to turn raw information into decisions people can actually use.</p>
         <div class="hero-actions">
-          <a class="btn btn-primary magnetic" href="#work">Explore my work <span>↗</span></a>
-          <a class="btn btn-ghost magnetic" href="resume.pdf" download>Download résumé <span>↓</span></a>
+          <a class="button button-gold magnetic" href="#work">Explore selected work <span>↗</span></a>
+          <a class="button button-glass magnetic" href="resume.pdf" download>View résumé <span>↓</span></a>
         </div>
-        <div class="hero-socials reveal delay-3">
-          <a href="https://github.com/chandanB47" target="_blank" rel="noopener">GitHub <span>↗</span></a>
-          <a href="https://www.linkedin.com/in/chandan47" target="_blank" rel="noopener">LinkedIn <span>↗</span></a>
-          <a href="mailto:chandanb.dev@gmail.com">chandanb.dev@gmail.com</a>
-        </div>
+        <div class="hero-meta"><span>SQL / BI / REPORTING</span><span>SCROLL TO EXPLORE ↓</span></div>
       </div>
-      <div class="hero-visual reveal delay-2">
-        <div class="cinematic-scene" aria-hidden="true">
-          <div class="scene-glow"></div>
-          <div class="sun-ring ring-gold"></div>
-          <div class="sun-ring ring-blue"></div>
-          <div class="horizon"></div>
-          <div class="mountain m1"></div><div class="mountain m2"></div><div class="mountain m3"></div>
-          <div class="city">
-            <i style="--h:54px;--x:4%;--d:.2s"></i><i style="--h:82px;--x:10%;--d:.5s"></i>
-            <i style="--h:44px;--x:17%;--d:.1s"></i><i style="--h:105px;--x:24%;--d:.7s"></i>
-            <i style="--h:68px;--x:31%;--d:.3s"></i><i style="--h:92px;--x:39%;--d:.9s"></i>
-            <i style="--h:50px;--x:48%;--d:.4s"></i><i style="--h:118px;--x:56%;--d:.8s"></i>
-            <i style="--h:74px;--x:65%;--d:.2s"></i><i style="--h:96px;--x:73%;--d:.6s"></i>
-            <i style="--h:58px;--x:82%;--d:.3s"></i><i style="--h:88px;--x:90%;--d:.7s"></i>
-          </div>
-          <svg class="data-road" viewBox="0 0 900 360" preserveAspectRatio="none">
-            <path d="M-20 330 C 180 250, 300 290, 450 235 S 720 175, 920 90" />
-            <path class="road-glow" d="M-20 330 C 180 250, 300 290, 450 235 S 720 175, 920 90" />
-            <path d="M130 360 C 250 295, 360 285, 530 235 S 720 180, 870 120" />
-          </svg>
-          <div class="signal-node n1"><b></b><span>QUERY</span></div>
-          <div class="signal-node n2"><b></b><span>MODEL</span></div>
-          <div class="signal-node n3"><b></b><span>INSIGHT</span></div>
-          <div class="scene-caption"><span>DATA / SIGNAL / IMPACT</span><b>01</b></div>
-          <div class="scene-scroll-line"></div>
-        </div>
-      </div>
-      <div class="scroll-cue"><span></span> SCROLL TO EXPLORE</div><div class="hero-depth-label">DATA / INSIGHT / IMPACT</div>
+      <div class="hero-side-note"><span>01</span><b>ANALYTICS<br>IN MOTION</b></div>
+      <div class="hero-bottom"><span>CHANDAN B</span><span>DATA / SIGNAL / IMPACT</span><span>2026</span></div>
     </section>
 
-    <section class="ticker" aria-label="Skills">
-      <div class="ticker-track">
-        <span>SQL</span><b>✦</b><span>POWER BI</span><b>✦</b><span>EXCEL</span><b>✦</b><span>PYTHON</span><b>✦</b>
-        <span>DATA CLEANING</span><b>✦</b><span>DATA MODELING</span><b>✦</b><span>BUSINESS ANALYSIS</span><b>✦</b>
-        <span>SQL</span><b>✦</b><span>POWER BI</span><b>✦</b><span>EXCEL</span><b>✦</b><span>PYTHON</span><b>✦</b>
-      </div>
-    </section>
+    <section class="marquee"><div class="marquee-track"><span>SQL</span><i>✦</i><span>POWER BI</span><i>✦</i><span>EXCEL</span><i>✦</i><span>PYTHON</span><i>✦</i><span>DATA MODELING</span><i>✦</i><span>BUSINESS INSIGHT</span><i>✦</i><span>SQL</span><i>✦</i><span>POWER BI</span><i>✦</i><span>EXCEL</span><i>✦</i><span>PYTHON</span><i>✦</i></div></section>
 
     <section id="about" class="section about">
-      <div class="section-label reveal"><span>01</span> PROFILE</div>
-      <div class="about-content">
-        <div class="reveal"><h2>Not a dashboard collector.<br><em>A problem solver.</em></h2></div>
-        <div class="about-text reveal delay-1">
-          <p>Data Analyst with hands-on project experience in SQL and Power BI, backed by operational data experience in SAP and TCS iON.</p>
-          <p>I work across data cleaning, dashboard development, KPI reporting, Excel-based MIS reporting and operational analytics — with a focus on turning structured data into decision support.</p>
-          <a class="text-link" href="https://github.com/chandanB47" target="_blank" rel="noopener">View GitHub profile <span>↗</span></a>
-        </div>
+      <div class="section-kicker"><span>01</span> PROFILE</div>
+      <div class="about-grid">
+        <div class="about-title reveal"><p class="mini-label">THE APPROACH</p><h2>Not another<br><em>dashboard.</em></h2></div>
+        <div class="about-copy reveal delay-1"><p class="lead">I build analytics work around the question first — then the data, model, metric and visual.</p><p>My portfolio spans SQL analysis, Power BI, Excel reporting and practical Python. The goal is simple: make the numbers understandable enough to support a real decision.</p><a class="line-link" href="https://github.com/chandanB47" target="_blank" rel="noopener">Explore GitHub <span>↗</span></a></div>
       </div>
-      <div class="stat-row reveal">
-        <div><strong data-count="4">0</strong><span>Core tools</span></div>
-        <div><strong data-count="2">0</strong><span>Featured SQL / BI projects</span></div>
-        <div><strong data-count="1000">0</strong><span>Monthly records managed</span></div>
-        <div><strong>10–15%</strong><span>Invoice discrepancy reduction</span></div>
+      <div class="stats reveal"><div><b>04</b><span>CORE TOOLS</span></div><div><b>02+</b><span>ANALYTICS PROJECTS</span></div><div><b>1K+</b><span>MONTHLY RECORDS</span></div><div><b>10–15%</b><span>DISCREPANCY REDUCTION</span></div></div>
+    </section>
+
+    <section class="image-break">
+      <div class="image-break-inner">
+        <img src="assets/forest-arch.png" alt="Moss-covered natural arch in mist" loading="lazy">
+        <div class="image-overlay"></div>
+        <div class="image-copy reveal"><span>02 / PERSPECTIVE</span><h2>Find the pattern<br><em>inside the noise.</em></h2></div>
+        <div class="image-caption">VISUAL INTERLUDE / DATA AS LANDSCAPE</div>
       </div>
     </section>
 
-    <section id="skills" class="section stack">
-      <div class="section-label reveal"><span>02</span> TOOLKIT</div>
-      <div class="stack-head reveal"><h2>Built around the<br><em>analytics workflow.</em></h2></div>
-      <div class="stack-grid">
-        <article class="stack-item reveal"><span>01 / SQL</span><h3>Query → Analyze</h3><p>Joins, aggregations, CTEs, cleaning, relational modeling and business questions.</p><div class="stack-tags"><i>MySQL</i><i>Queries</i><i>EDA</i></div></article>
-        <article class="stack-item reveal delay-1"><span>02 / POWER BI</span><h3>Model → Visualize</h3><p>Power Query, transformations, relationships, DAX measures and decision-focused dashboards.</p><div class="stack-tags"><i>Power Query</i><i>DAX</i><i>Modeling</i></div></article>
-        <article class="stack-item reveal delay-2"><span>03 / EXCEL</span><h3>Clean → Report</h3><p>Data preparation, formulas, KPI reporting and interactive sales dashboards.</p><div class="stack-tags"><i>KPIs</i><i>Dashboards</i><i>Reporting</i></div></article>
-        <article class="stack-item reveal delay-3"><span>04 / PYTHON</span><h3>Automate → Build</h3><p>Core Python and practical scripting for data-oriented workflows and automation.</p><div class="stack-tags"><i>Python</i><i>Logic</i><i>Automation</i></div></article>
+    <section id="stack" class="section stack">
+      <div class="section-kicker"><span>02</span> TOOLKIT</div>
+      <div class="section-heading reveal"><p class="mini-label">THE ANALYTICS WORKFLOW</p><h2>Four tools.<br><em>One workflow.</em></h2></div>
+      <div class="tool-grid">
+        <article class="tool-card tilt-card reveal"><div class="card-glare"></div><span class="tool-number">01</span><span class="tool-type">QUERY</span><h3>SQL</h3><p>Joins, aggregations, CTEs, cleaning and relational thinking for business questions.</p><div class="card-footer"><i>MySQL</i><i>EDA</i><i>Queries</i></div></article>
+        <article class="tool-card tilt-card reveal delay-1"><div class="card-glare"></div><span class="tool-number">02</span><span class="tool-type">MODEL</span><h3>Power BI</h3><p>Power Query, relationships, DAX and decision-focused dashboard design.</p><div class="card-footer"><i>DAX</i><i>Modeling</i><i>Power Query</i></div></article>
+        <article class="tool-card tilt-card reveal delay-2"><div class="card-glare"></div><span class="tool-number">03</span><span class="tool-type">REPORT</span><h3>Excel</h3><p>Data preparation, KPI reporting, analysis and practical business dashboards.</p><div class="card-footer"><i>KPIs</i><i>Reporting</i><i>Dashboards</i></div></article>
+        <article class="tool-card tilt-card reveal delay-3"><div class="card-glare"></div><span class="tool-number">04</span><span class="tool-type">AUTOMATE</span><h3>Python</h3><p>Core scripting and data-oriented automation without unnecessary complexity.</p><div class="card-footer"><i>Logic</i><i>Automation</i><i>Data</i></div></article>
       </div>
     </section>
 
     <section id="work" class="section work">
-      <div class="section-label reveal"><span>03</span> SELECTED WORK</div>
-      <div class="work-head reveal"><h2>Projects with<br><em>a reason to exist.</em></h2><p>Each project is designed to demonstrate a part of the end-to-end analytics workflow.</p></div>
-
-      <article class="project featured reveal">
-        <div class="project-index">01</div>
-        <div class="project-main">
-          <div class="project-meta"><span>SQL / ANALYTICS</span><span>2026</span></div>
-          <h3>Retail Operations<br>Analytics</h3>
-          <p>A normalized retail database used to investigate customers, orders, products, employees and operational performance through SQL.</p>
-          <div class="project-bottom"><div class="chips"><i>Schema Design</i><i>Data Cleaning</i><i>Business Questions</i></div><a href="https://github.com/chandanB47/Retail-Operations-SQL-Analytics" target="_blank" rel="noopener">Open project ↗</a></div>
-        </div>
-        <div class="project-art sql-art"><div class="sql-bars"><i></i><i></i><i></i><i></i><i></i></div><span>SELECT *<br>FROM insights<br>WHERE value = TRUE;</span></div>
-      </article>
-
-      <article class="project reveal">
-        <div class="project-index">02</div>
-        <div class="project-main">
-          <div class="project-meta"><span>POWER BI / BI</span><span>2026</span></div>
-          <h3>Power BI<br>Analytics Journey</h3>
-          <p>Structured progression from data import and Power Query through transformation, merging, appending, modeling and dashboard development.</p>
-          <div class="project-bottom"><div class="chips"><i>Power Query</i><i>DAX</i><i>Modeling</i></div><a href="https://github.com/chandanB47/Data-Science-Learning" target="_blank" rel="noopener">Open repository ↗</a></div>
-        </div>
-        <div class="project-art bi-art"><div class="mini-chart"><i></i><i></i><i></i><i></i><i></i><i></i></div><span>SALES / TREND / KPI</span></div>
-      </article>
-
-      <div class="two-projects">
-        <article class="project compact reveal">
-          <div class="project-index">03</div>
-          <div class="project-main">
-            <div class="project-meta"><span>EXCEL / REPORTING</span></div>
-            <h3>Sales Performance<br>Dashboard</h3>
-            <p>Business-friendly reporting with KPIs, analysis and visualization.</p>
-            <div class="project-bottom"><div class="chips"><i>Excel</i><i>KPIs</i></div><span class="pending">Link coming soon</span></div>
-          </div>
-        </article>
-        <article class="project compact reveal delay-1">
-          <div class="project-index">04</div>
-          <div class="project-main">
-            <div class="project-meta"><span>PYTHON / APPLICATION</span></div>
-            <h3>Vehicle Rental<br>System</h3>
-            <p>Menu-driven Python application demonstrating data handling and application logic.</p>
-            <div class="project-bottom"><div class="chips"><i>Python</i><i>CLI</i></div><a href="https://github.com/chandanB47/vehicle-rental-system" target="_blank" rel="noopener">Open project ↗</a></div>
-          </div>
-        </article>
+      <div class="section-kicker"><span>03</span> SELECTED WORK</div>
+      <div class="work-intro reveal"><div><p class="mini-label">BUILT FOR PROOF</p><h2>Projects with<br><em>a reason to exist.</em></h2></div><p>Each project demonstrates a different part of the analytics workflow — from raw data to a useful output.</p></div>
+      <div class="project-grid">
+        <article class="project-card project-wide tilt-card reveal"><div class="card-glare"></div><div class="project-copy"><div class="project-top"><span>01 / SQL / ANALYTICS</span><span>2026</span></div><h3>Retail Operations<br><em>Analytics</em></h3><p>Normalized retail data used to investigate customers, orders, products, employees and operational performance.</p><div class="project-bottom"><div><i>Schema Design</i><i>Data Cleaning</i><i>Business Questions</i></div><a href="https://github.com/chandanB47/Retail-Operations-SQL-Analytics" target="_blank" rel="noopener">Open project ↗</a></div></div><div class="project-visual sql-visual"><div class="terminal"><span>SELECT</span> insight,<br>&nbsp;&nbsp;COUNT(*)<br>FROM <b>sales</b><br>GROUP BY insight;<i></i></div></div></article>
+        <article class="project-card tilt-card reveal"><div class="card-glare"></div><div class="project-copy"><div class="project-top"><span>02 / POWER BI / BI</span><span>2026</span></div><h3>Power BI<br><em>Journey</em></h3><p>From import and transformation to modeling, DAX and dashboards.</p><div class="project-bottom"><div><i>Power Query</i><i>DAX</i></div><a href="https://github.com/chandanB47/Data-Science-Learning" target="_blank" rel="noopener">Repository ↗</a></div></div><div class="project-visual chart-visual"><div class="bars"><i></i><i></i><i></i><i></i><i></i><i></i></div><small>SALES / TREND / KPI</small></div></article>
+        <article class="project-card tilt-card reveal delay-1"><div class="card-glare"></div><div class="project-copy"><div class="project-top"><span>03 / EXCEL / REPORTING</span></div><h3>Sales Performance<br><em>Dashboard</em></h3><p>Business-friendly reporting with KPIs, analysis and visualization.</p><div class="project-bottom"><div><i>Excel</i><i>KPIs</i></div><span>Coming soon</span></div></div><div class="project-visual excel-visual"><div class="sheet"><b></b><b></b><b></b><b></b><b></b><b></b><b></b><b></b></div></div></article>
+        <article class="project-card tilt-card reveal delay-2"><div class="card-glare"></div><div class="project-copy"><div class="project-top"><span>04 / PYTHON / APPLICATION</span></div><h3>Vehicle Rental<br><em>System</em></h3><p>Menu-driven Python application demonstrating data handling and application logic.</p><div class="project-bottom"><div><i>Python</i><i>CLI</i></div><a href="https://github.com/chandanB47/vehicle-rental-system" target="_blank" rel="noopener">Open project ↗</a></div></div><div class="project-visual code-visual"><span>def rent(vehicle):</span><span>&nbsp;&nbsp;return available</span><span>print("ready")</span></div></article>
       </div>
     </section>
 
     <section class="section experience">
-      <div class="section-label reveal"><span>04</span> EXPERIENCE</div>
-      <div class="work-head reveal">
-        <h2>Data work beyond<br><em>the classroom.</em></h2>
-        <p>Operational experience gives me context for how data moves through real business workflows.</p>
-      </div>
-      <div class="experience-list">
-        <article class="experience-item reveal">
-          <div class="exp-date">MAR 2026 — MAY 2026</div>
-          <div>
-            <h3>Sales Data Associate</h3>
-            <p class="exp-company">Dighvijay Plastics & Allied Products Pvt. Ltd · Bengaluru</p>
-            <ul>
-              <li>Processed 50–80 daily invoices in TCS iON and maintained transactional sales data.</li>
-              <li>Reduced invoice discrepancies by 10–15% through validation and reconciliation.</li>
-              <li>Managed ASN uploads and production schedules using SAP ERP workflows.</li>
-              <li>Maintained structured sales and dispatch records for operational reporting.</li>
-            </ul>
-          </div>
-        </article>
-        <article class="experience-item reveal delay-1">
-          <div class="exp-date">FEB 2025 — FEB 2026</div>
-          <div>
-            <h3>System Operator — Data & ERP Operations</h3>
-            <p class="exp-company">Kems Forgings Pvt. Ltd · Bengaluru</p>
-            <ul>
-              <li>Managed and validated 1,000+ monthly records across production, inventory and dispatch.</li>
-              <li>Improved data accuracy by approximately 20% through validation and reconciliation.</li>
-              <li>Created Excel-based MIS reports for inventory tracking and production planning.</li>
-            </ul>
-          </div>
-        </article>
-      </div>
+      <div class="section-kicker"><span>04</span> EXPERIENCE</div>
+      <div class="experience-grid"><div class="reveal"><p class="mini-label">REAL OPERATIONS</p><h2>Data work beyond<br><em>the classroom.</em></h2></div><div class="experience-list"><article class="experience-item reveal"><span>MAR 2026 — MAY 2026</span><div><h3>Sales Data Associate</h3><p>Dighvijay Plastics & Allied Products Pvt. Ltd · Bengaluru</p></div></article><article class="experience-item reveal delay-1"><span>FEB 2025 — FEB 2026</span><div><h3>System Operator — Data & ERP Operations</h3><p>Kems Forgings Pvt. Ltd · Bengaluru</p></div></article></div></div>
     </section>
 
-    <section class="section process">
-      <div class="section-label reveal"><span>05</span> WORKFLOW</div>
-      <div class="process-grid">
-        <div class="process-title reveal"><h2>How I approach<br><em>a data problem.</em></h2></div>
-        <div class="process-list">
-          <div class="process-item reveal"><span>01</span><div><h3>Frame the question</h3><p>Define what decision the analysis needs to support.</p></div></div>
-          <div class="process-item reveal"><span>02</span><div><h3>Prepare the data</h3><p>Validate types, missing values, duplicates and business rules.</p></div></div>
-          <div class="process-item reveal"><span>03</span><div><h3>Find the signal</h3><p>Use SQL, calculations and comparisons to isolate useful patterns.</p></div></div>
-          <div class="process-item reveal"><span>04</span><div><h3>Communicate clearly</h3><p>Turn findings into dashboards, concise metrics and recommendations.</p></div></div>
-        </div>
-      </div>
-    </section>
-
-    <section id="contact" class="section contact">
+    <section id="contact" class="contact-section">
+      <div class="contact-image" aria-hidden="true"></div><div class="contact-overlay"></div>
+      <div class="contact-content reveal"><span class="eyebrow"><span></span> OPEN TO OPPORTUNITIES</span><h2>Let's make the<br><em>numbers useful.</em></h2><p>Role, project or analytics problem? Let's talk.</p><div class="contact-buttons"><a class="button button-gold magnetic" href="mailto:chandanb.dev@gmail.com">chandanb.dev@gmail.com ↗</a><a class="button button-glass magnetic" href="https://www.linkedin.com/in/chandan47" target="_blank" rel="noopener">LinkedIn ↗</a><a class="button button-glass magnetic" href="https://github.com/chandanB47" target="_blank" rel="noopener">GitHub ↗</a></div></div>
       <div class="contact-orbit"></div>
-      <div class="section-label reveal"><span>06</span> CONTACT</div>
-      <div class="contact-inner reveal">
-        <p class="kicker">OPEN TO DATA ANALYST OPPORTUNITIES</p>
-        <h2>Let's make the<br><em>numbers useful.</em></h2>
-        <p>Have a role, project or analytics problem? I'd like to hear about it.</p>
-        <div class="contact-actions">
-          <a class="btn btn-primary magnetic" href="https://mail.google.com/mail/?view=cm&fs=1&to=chandanb.dev@gmail.com" target="_blank" rel="noopener">chandanb.dev@gmail.com ↗</a>
-          <a class="btn btn-ghost magnetic" href="https://www.linkedin.com/in/chandan47" target="_blank" rel="noopener">LinkedIn ↗</a>
-          <a class="btn btn-ghost magnetic" href="https://github.com/chandanB47" target="_blank" rel="noopener">GitHub ↗</a>
-          <button class="btn btn-ghost magnetic copy-email" type="button" data-email="chandanb.dev@gmail.com">Copy email</button>
-        </div>
-        <div class="copied-message" aria-live="polite"></div>
-        <small>Email opens Gmail in your browser. Resume and LinkedIn are configured.</small>
-      </div>
     </section>
   </main>
 
-  <footer><span>© 2026 CHANDAN B</span><span>DATA / ANALYTICS / DECISIONS</span></footer>
+  <footer><span>© 2026 CHANDAN B</span><span>DATA / ANALYTICS / DECISIONS</span><span>BUILT FOR IMPACT</span></footer>
   <script src="script.js"></script>
 </body>
 </html>
