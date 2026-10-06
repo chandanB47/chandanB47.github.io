@@ -1,82 +1,58 @@
-# Chandan B — Data Analyst Portfolio V2
+# Chandan B — Portfolio
 
-Premium animated static portfolio built with:
-- HTML
-- CSS
-- Vanilla JavaScript
+> Premium cinematic portfolio designed to showcase data analytics projects, technical skills, professional experience, and analytical thinking through an immersive interactive web experience.
 
-## Features
-- Scroll reveal animations
-- Animated skill ticker
-- Animated KPI counters
-- Interactive cursor on desktop
-- Magnetic buttons
-- Animated analytics visual
-- Responsive mobile navigation
-- Project showcase
-- Dark premium visual system
+## Live Portfolio
 
-## GitHub Pages
-Repository: `chandanB47/chandanB47.github.io`
+🌐 **Website:** https://chandanB47.github.io
 
-Live URL: https://chandanB47.github.io
+💻 **Repository:** https://github.com/chandanB47/chandanB47.github.io
 
-## Personalized in V3
-- Real resume included as `resume.pdf`.
-- Email: `chandanb.dev@gmail.com`
-- LinkedIn: `https://www.linkedin.com/in/chandan47`
-- Resume-backed professional experience added to the site.
+---
 
-## Before publishing to recruiters
-1. Add project screenshots when available.
-2. Verify every project repository URL.
-3. Add the final capstone when completed.
+## About
 
-## Deployment
-Upload `index.html`, `style.css`, `script.js`, `README.md`, and `resume.pdf` to the repository root.
+This portfolio is built as a custom interactive experience rather than a traditional static resume website.
 
+The design combines:
 
-## V4 contact fix
-The contact button uses a Gmail compose URL instead of `mailto:` so visitors are not forced to configure a Windows mail application. A Copy email button is also included.
+- Data-analytics visual language
+- Cinematic imagery
+- Premium typography
+- Glassmorphism
+- 3D perspective effects
+- Interactive hover states
+- Ambient lighting
+- Particle animation
+- Scroll-based motion
+- Responsive layouts
+- Performance-conscious vanilla JavaScript
 
+The goal is to make the portfolio visually memorable while keeping the actual professional content clear and recruiter-friendly.
 
-## V5 visual direction
-- Immersive animated 3D-style background
-- Perspective grid floor
-- Floating depth objects and particles
-- Aurora lighting layers
-- 3D orbital rings
-- Glass analytics card with pointer-based 3D tilt
-- Native browser mouse pointer retained; no custom cursor
-- Reduced-motion support
+---
 
+# Design System
 
-## V6 visual direction
-- Premium light/ivory background instead of neon black
-- Lime + indigo accent palette
-- 3D perspective grid and depth rings
-- Animated aurora lighting
-- Scroll-driven parallax so the background visibly moves with page scrolling
-- Floating depth objects
-- Native mouse pointer
-- Responsive and reduced-motion friendly
+## Visual Direction
 
+The current version uses a:
 
-## V7 — Premium Smooth Edition
-- Ivory + Midnight Navy + Champagne Gold + Cobalt palette
-- Alternating light/dark sections for stronger hierarchy
-- Smooth anchor navigation with fixed-header offset
-- Lightweight IntersectionObserver reveal animations
-- No continuous scroll-parallax JavaScript
-- No WebGL/Vanta background
-- Native mouse pointer
-- Reduced-motion support
+- Deep black cinematic background
+- Champagne/gold lighting
+- High-contrast typography
+- Editorial-style layouts
+- Atmospheric image backgrounds
+- Glass and translucent UI surfaces
+- Depth-based card interactions
+- Soft cinematic gradients
+- Premium spacing and typography hierarchy
 
+### Reference Assets
 
-## V8 — Cinematic Data Horizon
-- Replaced the analyst profile card with a lightweight cinematic data-landscape hero visual.
-- Added GitHub and LinkedIn links in header, hero and contact.
-- Full email address is visible in the contact CTA.
-- Added visible scroll progress and stronger section reveal animations.
-- Scroll animation is IntersectionObserver/requestAnimationFrame based; no WebGL/Vanta background.
-- Hero visual uses CSS/SVG only for lower CPU/GPU cost.
+The cinematic visuals are stored in:
+
+```text
+assets/
+├── hero-orbit.png
+└── forest-arch.png
