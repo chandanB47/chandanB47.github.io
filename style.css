@@ -292,3 +292,69 @@ body{background:var(--bg)}
   .scene-glow,.data-road .road-glow,.signal-node b{animation:none!important}
   .reveal,.reveal.visible{opacity:1;transform:none!important;transition:none!important}
 }
+
+
+/* =========================================================
+   3D PROJECT CARD TILT + DYNAMIC SPECULAR GLARE
+   ========================================================= */
+
+.work,
+.two-projects {
+  perspective: 1000px;
+}
+
+.project {
+  position: relative;
+  overflow: hidden;
+  transform-style: preserve-3d;
+  will-change: transform;
+  transition:
+    transform 0.15s ease-out,
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.project-main,
+.project-index,
+.project-art {
+  position: relative;
+  z-index: 3;
+  transform-style: preserve-3d;
+}
+
+.project-main h3,
+.project-main p,
+.project-meta,
+.project-bottom,
+.project-index,
+.project-art > * {
+  transform: translateZ(25px);
+  transition: transform 0.2s ease-out;
+}
+
+/* Dynamic reflective glare layer injected by script.js */
+.project .card-glare {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: inherit;
+  pointer-events: none;
+  background: radial-gradient(
+    circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+    rgba(255, 255, 255, 0.14) 0%,
+    rgba(255, 255, 255, 0.045) 22%,
+    rgba(255, 255, 255, 0) 60%
+  );
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 10;
+}
+
+.project:hover .card-glare {
+  opacity: 1;
+}
+
+.project:hover {
+  border-color: rgba(142, 113, 24, 0.45);
+}

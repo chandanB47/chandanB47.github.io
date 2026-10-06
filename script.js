@@ -86,6 +86,62 @@
     });
   }
 
+
+
+  // 3D project-card tilt + cursor-following specular glare.
+  const projectCards = $$('.project');
+
+  projectCards.forEach(card => {
+    const glare = document.createElement('div');
+    glare.className = 'card-glare';
+    card.appendChild(glare);
+
+    const maxTilt = 10;
+
+    card.addEventListener('pointerenter', () => {
+      if (reduceMotion) return;
+      card.style.transition =
+        'transform 0.1s ease-out, border-color 0.3s ease, box-shadow 0.3s ease';
+    });
+
+    card.addEventListener('pointermove', e => {
+      if (reduceMotion) return;
+
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+
+      const xCenter = (x - rect.width / 2) / (rect.width / 2);
+      const yCenter = (y - rect.height / 2) / (rect.height / 2);
+
+      const rotateX = -yCenter * maxTilt;
+      const rotateY = xCenter * maxTilt;
+
+      card.style.setProperty('--mouse-x', `${(x / rect.width) * 100}%`);
+      card.style.setProperty('--mouse-y', `${(y / rect.height) * 100}%`);
+
+      card.style.transform = `
+        perspective(1000px)
+        rotateX(${rotateX.toFixed(2)}deg)
+        rotateY(${rotateY.toFixed(2)}deg)
+        scale3d(1.015, 1.015, 1.015)
+      `;
+    });
+
+    card.addEventListener('pointerleave', () => {
+      if (reduceMotion) return;
+
+      card.style.transition =
+        'transform 0.5s ease-out, border-color 0.3s ease, box-shadow 0.3s ease';
+
+      card.style.transform =
+        'perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)';
+
+      card.style.setProperty('--mouse-x', '50%');
+      card.style.setProperty('--mouse-y', '50%');
+    });
+  });
+
   // Mobile menu.
   const menu=$('.menu'), nav=$('.nav nav');
   menu?.addEventListener('click',()=>{
