@@ -4,6 +4,15 @@ A modern, responsive personal portfolio website for **Chandan B**.
 
 The design is intentionally simple, visual, and flexible rather than being tied to one profession or job title.
 
+
+
+# Chandan B — Portfolio Website
+
+🌐 **Live Portfolio:** https://chandanB47.github.io/
+
+
+
+
 ## Files
 
 - `index.html` — page structure and content
