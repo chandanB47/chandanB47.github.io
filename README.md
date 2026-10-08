@@ -59,3 +59,8 @@ Keep `index.html` in the repository root.
 - Rebuilt hero with animated orbit system, signal wave and moving particles
 - Added visual scroll progress rail and scroll cue
 - Preserved lightweight mobile-first scrolling
+
+
+## V4 hero
+
+Replaced the previous orbit/data-visual hero with a cleaner editorial identity-focused hero. The rest of the portfolio structure and sections are unchanged.
