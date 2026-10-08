@@ -64,3 +64,13 @@ Keep `index.html` in the repository root.
 ## V4 hero
 
 Replaced the previous orbit/data-visual hero with a cleaner editorial identity-focused hero. The rest of the portfolio structure and sections are unchanged.
+
+
+## V5 hero update
+
+The hero now uses a distinct kinetic visual style with moving geometry, waveform motion, scanline, animated grid, floating labels, ambient gradients, kinetic typography, and subtle desktop pointer depth.
+
+
+## V6 hero
+
+Reworked the hero into a cinematic focus-poster composition: oversized identity typography, a dark workspace silhouette, monitor glow, controlled particles, scan/grid atmosphere, focus rings and restrained motion.

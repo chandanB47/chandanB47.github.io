@@ -96,3 +96,8 @@
   addEventListener("resize", update, {passive:true});
   update();
 })();
+
+/* V5 hero depth interaction */
+(()=>{const s=document.querySelector(".hero-v5-stage");if(!s||!matchMedia("(pointer:fine)").matches)return;let x=0,y=0,tx=0,ty=0,r=0;addEventListener("pointermove",e=>{tx=(e.clientX/innerWidth-.5)*10;ty=(e.clientY/innerHeight-.5)*7;if(r)return;r=requestAnimationFrame(()=>{x+=(tx-x)*.08;y+=(ty-y)*.08;s.style.transform=`translate3d(${x}px,${y}px,0)`;r=0})},{passive:true})})();
+
+(()=>{const s=document.querySelector(".v6-scene");if(!s||!matchMedia("(pointer:fine)").matches)return;let x=0,y=0,tx=0,ty=0,r=0;addEventListener("pointermove",e=>{tx=(e.clientX/innerWidth-.5)*7;ty=(e.clientY/innerHeight-.5)*4;if(r)return;r=requestAnimationFrame(()=>{x+=(tx-x)*.06;y+=(ty-y)*.06;s.style.transform=`translate3d(${x}px,${y}px,0)`;r=0})},{passive:true})})();
