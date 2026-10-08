@@ -74,3 +74,25 @@
     detail.classList.remove("open"); cards.forEach(c=>c.classList.remove("active"));
   });
 })();
+
+/* V3 scroll progress — passive, tiny, native-scroll friendly. */
+(() => {
+  const bar = document.querySelector(".scroll-progress span");
+  if (!bar) return;
+  let ticking = false;
+  const update = () => {
+    const doc = document.documentElement;
+    const max = doc.scrollHeight - innerHeight;
+    const pct = max > 0 ? (scrollY / max) * 100 : 0;
+    bar.style.height = `${Math.min(100, Math.max(0, pct))}%`;
+    ticking = false;
+  };
+  addEventListener("scroll", () => {
+    if (!ticking) {
+      requestAnimationFrame(update);
+      ticking = true;
+    }
+  }, {passive:true});
+  addEventListener("resize", update, {passive:true});
+  update();
+})();

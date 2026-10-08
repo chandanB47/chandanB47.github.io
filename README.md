@@ -51,3 +51,11 @@ Upload the contents of this folder to the root of:
 `chandanB47/chandanB47.github.io`
 
 Keep `index.html` in the repository root.
+
+
+## V3 updates
+
+- Added Experience section
+- Rebuilt hero with animated orbit system, signal wave and moving particles
+- Added visual scroll progress rail and scroll cue
+- Preserved lightweight mobile-first scrolling
