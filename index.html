@@ -1,271 +1,187 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#090b10">
-  <meta name="description" content="Chandan B — personal portfolio website.">
-  <title>Chandan B — Portfolio</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#080a0f">
+<meta name="description" content="Chandan B — personal portfolio website.">
+<title>Chandan B — Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="noise" aria-hidden="true"></div>
-  <div class="cursor-glow" aria-hidden="true"></div>
+<div class="ambient" aria-hidden="true">
+  <div class="aurora aurora-a"></div><div class="aurora aurora-b"></div>
+  <div class="aurora aurora-c"></div><div class="star-field"></div>
+</div>
+<div class="noise" aria-hidden="true"></div>
+<div class="cursor-glow" aria-hidden="true"></div>
 
-  <header class="topbar">
-    <a class="brand" href="#top" aria-label="Chandan B home">
-      <span class="brand-mark">CB</span>
-      <span>Chandan B</span>
-    </a>
+<header class="topbar">
+  <a class="brand" href="#top" aria-label="Chandan B home"><span class="brand-mark">CB</span><span>Chandan B</span></a>
+  <nav class="desktop-nav" aria-label="Primary navigation">
+    <a href="#about">About</a><a href="#skills">Skills</a><a href="#work">Projects</a><a href="#journey">Journey</a>
+  </nav>
+  <a class="top-contact" href="#contact">Let's talk <span>↗</span></a>
+  <button class="menu-btn" aria-label="Open menu" aria-expanded="false"><span></span><span></span></button>
+</header>
+<div class="mobile-nav" aria-hidden="true">
+  <a href="#about">About</a><a href="#skills">Skills</a><a href="#work">Projects</a><a href="#journey">Journey</a><a href="#contact">Contact</a>
+</div>
 
-    <nav class="desktop-nav" aria-label="Primary navigation">
-      <a href="#work">Work</a>
-      <a href="#skills">Skills</a>
-      <a href="#process">Process</a>
-      <a href="#about">About</a>
-    </nav>
-
-    <a class="top-contact" href="#contact">Let's talk <span>↗</span></a>
-    <button class="menu-btn" aria-label="Open menu" aria-expanded="false">
-      <span></span><span></span>
-    </button>
-  </header>
-
-  <div class="mobile-nav" aria-hidden="true">
-    <a href="#work">Work</a>
-    <a href="#skills">Skills</a>
-    <a href="#process">Process</a>
-    <a href="#about">About</a>
-    <a href="#contact">Contact</a>
+<main id="top">
+<!-- 01 HERO -->
+<section class="hero section-pad">
+  <div class="hero-grid"></div>
+  <div class="hero-copy reveal">
+    <div class="eyebrow"><span class="status-dot"></span> Open to new opportunities · Bengaluru</div>
+    <div class="hero-name">CHANDAN <span>B</span></div>
+    <h1>I build <span class="accent">ideas</span><br>into useful work.</h1>
+    <p class="hero-lede">A personal space for projects, experiments, skills and the work I'm building — from data and technology to everything in between.</p>
+    <div class="hero-actions">
+      <a class="btn btn-primary" href="#work">Explore my work <span>↓</span></a>
+      <a class="btn btn-ghost" href="resume.pdf" target="_blank" rel="noopener">View résumé <span>↗</span></a>
+    </div>
+    <div class="hero-meta"><span>BUILD</span><i></i><span>LEARN</span><i></i><span>CREATE</span><i></i><span>IMPROVE</span></div>
   </div>
 
-  <main id="top">
-    <section class="hero section-pad">
-      <div class="hero-orb orb-one"></div>
-      <div class="hero-orb orb-two"></div>
-      <div class="hero-grid"></div>
-
-      <div class="hero-copy reveal">
-        <div class="eyebrow"><span class="status-dot"></span> Open to new opportunities · Bengaluru</div>
-        <h1>I turn <span class="accent">messy data</span><br>into useful decisions.</h1>
-        <p class="hero-lede">
-          Data analyst focused on turning raw tables into clear insights, practical dashboards,
-          and decisions people can actually act on.
-        </p>
-        <div class="hero-actions">
-          <a class="btn btn-primary" href="#work">Explore my work <span>↓</span></a>
-          <a class="btn btn-ghost" href="resume.pdf" target="_blank" rel="noopener">Download résumé <span>↗</span></a>
-        </div>
-        <div class="hero-meta">
-          <span>SQL</span><i></i><span>Python</span><i></i><span>Excel</span><i></i><span>Power BI</span>
-        </div>
+  <div class="hero-visual reveal reveal-delay">
+    <div class="orbit orbit-1"></div><div class="orbit orbit-2"></div>
+    <div class="signal-card">
+      <div class="signal-top"><span class="mono">LIVE / WORKBENCH</span><span class="live-pill"><b></b> ACTIVE</span></div>
+      <div class="signal-title"><span>Signal</span><strong>+18.6%</strong></div>
+      <div class="wave-wrap">
+        <svg class="wave-chart" viewBox="0 0 700 300" preserveAspectRatio="none" aria-hidden="true">
+          <defs><linearGradient id="waveFill" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-opacity=".22"/><stop offset="1" stop-opacity="0"/></linearGradient></defs>
+          <path class="wave-area" d="M0 205 C55 170 80 220 125 175 S195 110 240 155 S300 250 350 185 S425 75 470 135 S520 220 565 155 S625 45 700 85 L700 300 L0 300Z"/>
+          <path class="wave-line" d="M0 205 C55 170 80 220 125 175 S195 110 240 155 S300 250 350 185 S425 75 470 135 S520 220 565 155 S625 45 700 85"/>
+          <circle class="wave-dot" cx="700" cy="85" r="7"/>
+        </svg>
+        <div class="wave-labels"><span>IDEA</span><span>BUILD</span><span>TEST</span><span>RESULT</span></div>
       </div>
+      <div class="signal-footer"><span><b class="signal-bar lime"></b> Growth</span><span><b class="signal-bar blue"></b> Systems</span><span><b class="signal-bar gold"></b> Learning</span></div>
+    </div>
+    <div class="float-chip chip-a"><span>01</span> Explore</div>
+    <div class="float-chip chip-b"><span>02</span> Build</div>
+    <div class="float-chip chip-c"><span>03</span> Ship</div>
+  </div>
+  <div class="scroll-note"><span></span> Scroll to explore</div>
+</section>
 
-      <div class="hero-visual reveal reveal-delay">
-        <div class="dashboard-card">
-          <div class="dash-top">
-            <span class="mono">INSIGHT / 01</span>
-            <span class="live-pill"><b></b> LIVE</span>
-          </div>
-          <div class="metric-row">
-            <div>
-              <span class="metric-label">Revenue</span>
-              <strong>₹24.8L</strong>
-            </div>
-            <span class="metric-up">+18.6%</span>
-          </div>
-          <div class="chart-wrap">
-            <svg class="chart" viewBox="0 0 600 230" preserveAspectRatio="none" aria-label="Revenue trend">
-              <defs>
-                <linearGradient id="area" x1="0" x2="0" y1="0" y2="1">
-                  <stop offset="0%" stop-opacity=".30"/>
-                  <stop offset="100%" stop-opacity="0"/>
-                </linearGradient>
-              </defs>
-              <path class="area" d="M0 180 C60 170 80 130 130 145 S190 170 230 110 S290 80 330 112 S390 120 430 70 S490 92 530 44 S570 54 600 18 L600 230 L0 230Z"/>
-              <path class="line" d="M0 180 C60 170 80 130 130 145 S190 170 230 110 S290 80 330 112 S390 120 430 70 S490 92 530 44 S570 54 600 18"/>
-            </svg>
-            <div class="chart-axis"><span>JAN</span><span>APR</span><span>JUL</span><span>OCT</span></div>
-          </div>
-          <div class="dash-bottom">
-            <span><b class="mini-bar b1"></b> Orders</span>
-            <span><b class="mini-bar b2"></b> Customers</span>
-            <span><b class="mini-bar b3"></b> Margin</span>
-          </div>
-        </div>
-        <div class="float-chip chip-a"><span>01</span> Clean</div>
-        <div class="float-chip chip-b"><span>02</span> Analyse</div>
-        <div class="float-chip chip-c"><span>03</span> Explain</div>
+<!-- 02 ABOUT -->
+<section id="about" class="about section-pad">
+  <div class="section-kicker reveal">02 / ABOUT ME</div>
+  <div class="about-grid">
+    <div class="about-heading reveal"><h2>Curious by<br><span>default.</span></h2></div>
+    <div class="about-copy reveal">
+      <p class="lead-copy">I'm Chandan — I like learning how things work, turning ideas into projects, and improving them until they feel simple.</p>
+      <p>My background spans engineering, operations, technology and analytics. I enjoy working across different tools instead of putting everything into one box.</p>
+      <div class="about-facts">
+        <div><strong>BE</strong><span>Computer Science</span></div>
+        <div><strong>∞</strong><span>Things to learn</span></div>
+        <div><strong>01</strong><span>Step at a time</span></div>
       </div>
+    </div>
+  </div>
+</section>
 
-      <div class="scroll-note"><span></span> Scroll to explore</div>
-    </section>
+<!-- 03 SKILLS -->
+<section id="skills" class="skills section-pad">
+  <div class="section-kicker reveal">03 / SKILLS & TOOLKIT</div>
+  <div class="section-heading reveal">
+    <div><h2>Tools I<br><span>work with.</span></h2></div>
+    <p>Hover or tap a card to reveal the areas I use it for. The toolkit can grow as the work grows.</p>
+  </div>
+  <div class="tool-grid">
+    <button class="tool-card featured-tool" data-tool="sql"><span class="tool-index">01</span><span class="tool-icon">⌁</span><strong>SQL</strong><small>Queries & databases</small><em>Explore ↗</em></button>
+    <button class="tool-card" data-tool="python"><span class="tool-index">02</span><span class="tool-icon">Py</span><strong>Python</strong><small>Automation & analysis</small><em>Explore ↗</em></button>
+    <button class="tool-card" data-tool="excel"><span class="tool-index">03</span><span class="tool-icon">X</span><strong>Excel</strong><small>Models & reporting</small><em>Explore ↗</em></button>
+    <button class="tool-card" data-tool="powerbi"><span class="tool-index">04</span><span class="tool-icon">▰</span><strong>Power BI</strong><small>Dashboards & BI</small><em>Explore ↗</em></button>
+    <button class="tool-card" data-tool="statistics"><span class="tool-index">05</span><span class="tool-icon">σ</span><strong>Statistics</strong><small>Patterns & probability</small><em>Explore ↗</em></button>
+    <button class="tool-card" data-tool="aiml"><span class="tool-index">06</span><span class="tool-icon">AI</span><strong>AI / ML</strong><small>Models & experiments</small><em>Explore ↗</em></button>
+    <button class="tool-card" data-tool="genai"><span class="tool-index">07</span><span class="tool-icon">✦</span><strong>GenAI</strong><small>LLMs & workflows</small><em>Explore ↗</em></button>
+    <button class="tool-card" data-tool="linux"><span class="tool-index">08</span><span class="tool-icon">$_</span><strong>Linux</strong><small>CLI & systems</small><em>Explore ↗</em></button>
+    <button class="tool-card" data-tool="github"><span class="tool-index">09</span><span class="tool-icon">⌘</span><strong>Git / GitHub</strong><small>Version control</small><em>Explore ↗</em></button>
+    <button class="tool-card" data-tool="sap"><span class="tool-index">10</span><span class="tool-icon">SAP</span><strong>SAP</strong><small>ERP workflows</small><em>Explore ↗</em></button>
+  </div>
+  <div class="tool-detail" id="toolDetail" aria-live="polite">
+    <div class="detail-orb"></div>
+    <div class="detail-head"><span class="mono">TOOL / <b id="detailNumber">01</b></span><button id="detailClose" aria-label="Close tool details">×</button></div>
+    <div class="detail-body">
+      <div><span class="detail-icon" id="detailIcon">⌁</span><h3 id="detailTitle">SQL</h3><p id="detailDescription">Structured querying and working with relational data.</p></div>
+      <div class="detail-skills" id="detailSkills"></div>
+    </div>
+  </div>
+</section>
 
-    <section class="statement section-pad">
-      <div class="section-kicker reveal">01 / THE POINT</div>
-      <div class="statement-grid">
-        <h2 class="reveal">Good analysis isn't about making <em>more charts.</em><br>It's about finding the signal.</h2>
-        <p class="reveal">I enjoy the part between the raw dataset and the final decision: cleaning what is unreliable, asking better questions, finding the pattern, and communicating it without unnecessary complexity.</p>
-      </div>
-    </section>
+<!-- 04 PROJECTS -->
+<section id="work" class="work section-pad">
+  <div class="section-heading reveal">
+    <div><div class="section-kicker">04 / SELECTED WORK</div><h2>Things I've<br><span>built.</span></h2></div>
+    <p>Projects are where the ideas become tangible. Each one is a chance to learn, solve and make something better.</p>
+  </div>
+  <div class="project-list">
+    <article class="project-card featured reveal">
+      <div class="project-number">01</div>
+      <div class="project-main"><div class="project-tags"><span>POWER BI</span><span>STAR SCHEMA</span><span>DAX</span></div><h3>Sales Performance<br>Intelligence</h3><p>Interactive reporting experience built around a clean model, useful KPIs and decision-focused views.</p><a class="project-link" href="https://github.com/chandanB47" target="_blank" rel="noopener">Explore project <span>↗</span></a></div>
+      <div class="project-art powerbi-art"><div class="art-window"><div class="art-header"><span></span><span></span><span></span></div><div class="art-kpis"><b>₹48.2L</b><b>+14.2%</b><b>82.4%</b></div><div class="art-bars"><i style="height:42%"></i><i style="height:67%"></i><i style="height:53%"></i><i style="height:82%"></i><i style="height:70%"></i><i style="height:94%"></i><i style="height:78%"></i></div></div></div>
+    </article>
+    <article class="project-card reveal">
+      <div class="project-number">02</div>
+      <div class="project-main"><div class="project-tags"><span>SQL</span><span>CTEs</span><span>WINDOW FUNCTIONS</span></div><h3>Retail Operations<br>Analysis</h3><p>Explored sales behaviour, customer segments, product performance and operational trends using structured SQL analysis.</p><a class="project-link" href="https://github.com/chandanB47" target="_blank" rel="noopener">Explore project <span>↗</span></a></div>
+      <div class="project-art sql-art"><div class="terminal"><div class="terminal-head"><span></span><span></span><span></span></div><code><b>SELECT</b> segment,<br>&nbsp;&nbsp;SUM(revenue) AS revenue<br><b>FROM</b> sales<br><b>GROUP BY</b> segment<br><b>ORDER BY</b> revenue <b>DESC</b>;</code></div></div>
+    </article>
+    <article class="project-card reveal">
+      <div class="project-number">03</div>
+      <div class="project-main"><div class="project-tags"><span>PYTHON</span><span>PANDAS</span><span>EDA</span></div><h3>Data Cleaning &<br>Exploration</h3><p>Converted imperfect source data into analysis-ready datasets and surfaced patterns through focused exploratory work.</p><a class="project-link" href="https://github.com/chandanB47" target="_blank" rel="noopener">Explore project <span>↗</span></a></div>
+      <div class="project-art python-art"><div class="code-grid"><span>df.info()</span><span>df.describe()</span><span>df.isna()</span><span>groupby()</span><span>merge()</span><span>value_counts()</span></div></div>
+    </article>
+    <article class="project-card reveal">
+      <div class="project-number">04</div>
+      <div class="project-main"><div class="project-tags"><span>EXCEL</span><span>POWER QUERY</span><span>KPIs</span></div><h3>Business Reporting<br>Workbook</h3><p>A practical reporting workflow with cleaned data, formulas, pivot analysis and management-friendly KPI views.</p><a class="project-link" href="https://github.com/chandanB47" target="_blank" rel="noopener">Explore project <span>↗</span></a></div>
+      <div class="project-art excel-art"><div class="sheet"><div class="sheet-row header"><i></i><i></i><i></i><i></i></div><div class="sheet-row"><i></i><i></i><i></i><i></i></div><div class="sheet-row"><i></i><i></i><i></i><i></i></div><div class="sheet-row"><i></i><i></i><i></i><i></i></div><div class="sheet-row"><i></i><i></i><i></i><i></i></div></div></div>
+    </article>
+  </div>
+</section>
 
-    <section id="work" class="work section-pad">
-      <div class="section-heading reveal">
-        <div>
-          <div class="section-kicker">02 / SELECTED WORK</div>
-          <h2>Projects built to<br><span>answer questions.</span></h2>
-        </div>
-        <p>Practical analytics projects using SQL, Python, Excel and Power BI — from raw data to decision-ready output.</p>
-      </div>
+<!-- 05 JOURNEY / PROCESS -->
+<section id="journey" class="journey section-pad">
+  <div class="section-kicker reveal">05 / JOURNEY & PROCESS</div>
+  <div class="journey-grid">
+    <div class="journey-title reveal"><h2>Learn.<br>Build.<br><span>Repeat.</span></h2><p>The process matters as much as the result. I keep learning through real projects and practical problems.</p></div>
+    <div class="timeline">
+      <div class="timeline-item reveal"><span>2023</span><div><h3>Engineering</h3><p>Completed a Bachelor of Engineering in Computer Science and Engineering.</p></div></div>
+      <div class="timeline-item reveal"><span>2025</span><div><h3>Operations & Systems</h3><p>Worked with production, inventory and dispatch data, ERP workflows and structured reporting.</p></div></div>
+      <div class="timeline-item reveal"><span>2026</span><div><h3>Analytics & Projects</h3><p>Focused on SQL, Power BI, Excel, Python and practical portfolio projects.</p></div></div>
+      <div class="timeline-item reveal"><span>NOW</span><div><h3>Build the next thing</h3><p>Continuing to learn, experiment and turn ideas into stronger work.</p></div></div>
+    </div>
+  </div>
+  <div class="process-strip reveal">
+    <div><span>01</span><strong>Understand</strong><small>Ask the right question</small></div>
+    <div><span>02</span><strong>Build</strong><small>Make it useful</small></div>
+    <div><span>03</span><strong>Test</strong><small>Find what breaks</small></div>
+    <div><span>04</span><strong>Improve</strong><small>Make it clearer</small></div>
+  </div>
+</section>
 
-      <div class="project-list">
-        <article class="project-card featured reveal">
-          <div class="project-number">01</div>
-          <div class="project-main">
-            <div class="project-tags"><span>POWER BI</span><span>STAR SCHEMA</span><span>DAX</span></div>
-            <h3>Sales Performance<br>Intelligence</h3>
-            <p>Interactive business dashboard designed around a clean fact-and-dimension model to reveal revenue, margin, product and regional performance.</p>
-            <a class="project-link" href="#" onclick="return false;">View case study <span>↗</span></a>
-          </div>
-          <div class="project-art powerbi-art">
-            <div class="art-window">
-              <div class="art-header"><span></span><span></span><span></span></div>
-              <div class="art-kpis"><b>₹48.2L</b><b>+14.2%</b><b>82.4%</b></div>
-              <div class="art-bars"><i style="height:42%"></i><i style="height:67%"></i><i style="height:53%"></i><i style="height:82%"></i><i style="height:70%"></i><i style="height:94%"></i><i style="height:78%"></i></div>
-            </div>
-          </div>
-        </article>
+<!-- 06 CONTACT -->
+<section id="contact" class="contact section-pad">
+  <div class="contact-inner reveal">
+    <div class="section-kicker">06 / CONTACT ME</div>
+    <h2>Let's make something<br><span>worth showing.</span></h2>
+    <p>Open to new opportunities, interesting projects and conversations. If you have an idea, send it over.</p>
+    <div class="contact-actions">
+      <a class="btn btn-primary" href="mailto:chandanb.dev@gmail.com">chandanb.dev@gmail.com <span>↗</span></a>
+      <a class="btn btn-ghost" href="https://www.linkedin.com/in/chandan47" target="_blank" rel="noopener">LinkedIn <span>↗</span></a>
+      <a class="btn btn-ghost" href="https://github.com/chandanB47" target="_blank" rel="noopener">GitHub <span>↗</span></a>
+    </div>
+  </div>
+</section>
+</main>
 
-        <article class="project-card reveal">
-          <div class="project-number">02</div>
-          <div class="project-main">
-            <div class="project-tags"><span>SQL</span><span>CTEs</span><span>WINDOW FUNCTIONS</span></div>
-            <h3>Retail Operations<br>Analysis</h3>
-            <p>Explored sales behaviour, customer segments, product performance and operational trends using structured SQL analysis.</p>
-            <a class="project-link" href="https://github.com/chandanB47" target="_blank" rel="noopener">View repository <span>↗</span></a>
-          </div>
-          <div class="project-art sql-art">
-            <div class="terminal">
-              <div class="terminal-head"><span></span><span></span><span></span></div>
-              <code><b>SELECT</b> customer_segment,<br>&nbsp;&nbsp;SUM(revenue) AS revenue<br><b>FROM</b> sales<br><b>GROUP BY</b> customer_segment<br><b>ORDER BY</b> revenue <b>DESC</b>;</code>
-            </div>
-          </div>
-        </article>
-
-        <article class="project-card reveal">
-          <div class="project-number">03</div>
-          <div class="project-main">
-            <div class="project-tags"><span>PYTHON</span><span>PANDAS</span><span>EDA</span></div>
-            <h3>Data Cleaning &<br>Exploratory Analysis</h3>
-            <p>Converted imperfect source data into analysis-ready datasets and surfaced patterns through focused exploratory analysis.</p>
-            <a class="project-link" href="https://github.com/chandanB47" target="_blank" rel="noopener">View repository <span>↗</span></a>
-          </div>
-          <div class="project-art python-art">
-            <div class="code-grid">
-              <span>df.info()</span><span>df.describe()</span><span>df.isna()</span><span>groupby()</span><span>merge()</span><span>value_counts()</span>
-            </div>
-          </div>
-        </article>
-
-        <article class="project-card reveal">
-          <div class="project-number">04</div>
-          <div class="project-main">
-            <div class="project-tags"><span>EXCEL</span><span>POWER QUERY</span><span>KPIs</span></div>
-            <h3>Business Reporting<br>Workbook</h3>
-            <p>Built a practical Excel reporting workflow with cleaned data, formulas, pivot analysis and management-friendly KPI views.</p>
-            <a class="project-link" href="https://github.com/chandanB47" target="_blank" rel="noopener">View repository <span>↗</span></a>
-          </div>
-          <div class="project-art excel-art">
-            <div class="sheet">
-              <div class="sheet-row header"><i></i><i></i><i></i><i></i></div>
-              <div class="sheet-row"><i></i><i></i><i></i><i></i></div>
-              <div class="sheet-row"><i></i><i></i><i></i><i></i></div>
-              <div class="sheet-row"><i></i><i></i><i></i><i></i></div>
-              <div class="sheet-row"><i></i><i></i><i></i><i></i></div>
-            </div>
-          </div>
-        </article>
-      </div>
-    </section>
-
-    <section id="skills" class="skills section-pad">
-      <div class="section-kicker reveal">03 / TOOLKIT</div>
-      <div class="skills-grid">
-        <div class="skills-intro reveal">
-          <h2>The stack<br><span>behind the work.</span></h2>
-          <p>I keep the toolkit practical. The goal is not to collect technologies — it's to use the right one for the question.</p>
-        </div>
-        <div class="skill-stack reveal">
-          <div class="skill-row"><span class="skill-index">01</span><strong>SQL</strong><small>Queries · Joins · CTEs · Windows · Aggregations</small><em>CORE</em></div>
-          <div class="skill-row"><span class="skill-index">02</span><strong>Power BI</strong><small>Data modelling · DAX · Dashboards · Storytelling</small><em>CORE</em></div>
-          <div class="skill-row"><span class="skill-index">03</span><strong>Excel</strong><small>Power Query · PivotTables · XLOOKUP · Reporting</small><em>CORE</em></div>
-          <div class="skill-row"><span class="skill-index">04</span><strong>Python</strong><small>Pandas · NumPy · EDA · Data cleaning</small><em>WORKING</em></div>
-          <div class="skill-row"><span class="skill-index">05</span><strong>Git & GitHub</strong><small>Version control · Documentation · Projects</small><em>WORKFLOW</em></div>
-        </div>
-      </div>
-    </section>
-
-    <section id="process" class="process section-pad">
-      <div class="section-kicker reveal">04 / HOW I WORK</div>
-      <div class="process-grid">
-        <div class="process-title reveal">
-          <h2>From raw<br><span>to useful.</span></h2>
-          <p>A simple workflow that keeps analysis grounded in the business question.</p>
-        </div>
-        <div class="process-steps">
-          <div class="step reveal"><span>01</span><div><h3>Frame</h3><p>Clarify the question, metric and decision before touching the data.</p></div></div>
-          <div class="step reveal"><span>02</span><div><h3>Clean</h3><p>Handle missing values, duplicates, inconsistent formats and unreliable fields.</p></div></div>
-          <div class="step reveal"><span>03</span><div><h3>Analyse</h3><p>Use SQL, Python, Excel or Power BI to find patterns and meaningful differences.</p></div></div>
-          <div class="step reveal"><span>04</span><div><h3>Explain</h3><p>Turn findings into concise visuals, recommendations and next actions.</p></div></div>
-        </div>
-      </div>
-    </section>
-
-    <section id="about" class="about section-pad">
-      <div class="about-card reveal">
-        <div class="about-copy">
-          <div class="section-kicker">05 / ABOUT</div>
-          <h2>Curious about<br><span>what the data says.</span></h2>
-          <p>I'm building my career around analytics that is useful, understandable and connected to real business problems. I like structured thinking, clean dashboards and the satisfaction of finding the one number that changes the conversation.</p>
-          <div class="about-facts">
-            <div><strong>4+</strong><span>Core tools</span></div>
-            <div><strong>SQL</strong><span>Daily practice</span></div>
-            <div><strong>BI</strong><span>Dashboard focus</span></div>
-          </div>
-        </div>
-        <div class="about-visual">
-          <div class="radar">
-            <span></span><span></span><span></span><span></span>
-            <div class="radar-line"></div>
-            <b>DATA<br>→<br>DECISION</b>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="contact" class="contact section-pad">
-      <div class="contact-inner reveal">
-        <div class="section-kicker">06 / CONTACT</div>
-        <h2>Have an idea?<br><span>Let's talk.</span></h2>
-        <p>I'm open to new opportunities, interesting projects, and conversations about building useful things.</p>
-        <div class="contact-actions">
-          <a class="btn btn-primary" href="mailto:chandanb.dev@gmail.com">Email me <span>↗</span></a>
-          <a class="btn btn-ghost" href="https://www.linkedin.com/in/chandan47" target="_blank" rel="noopener">LinkedIn <span>↗</span></a>
-          <a class="btn btn-ghost" href="https://github.com/chandanB47" target="_blank" rel="noopener">GitHub <span>↗</span></a>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <footer class="footer section-pad">
-    <span>© <span id="year"></span> Chandan B</span>
-    <span>Built with HTML · CSS · JavaScript</span>
-    <a href="#top">Back to top ↑</a>
-  </footer>
-
-  <script src="script.js"></script>
+<footer class="footer section-pad"><span>© <span id="year"></span> Chandan B</span><span>Portfolio · Projects · Experiments</span><a href="#top">Back to top ↑</a></footer>
+<script src="script.js"></script>
 </body>
 </html>

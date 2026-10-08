@@ -1,31 +1,40 @@
 # Chandan B — Portfolio Website
 
-A modern, responsive personal portfolio website for **Chandan B**.
-
-The design is intentionally simple, visual, and flexible rather than being tied to one profession or job title.
-
-
-
-# Chandan B — Portfolio Website
-
 🌐 **Live Portfolio:** https://chandanB47.github.io/
 
+A modern, responsive personal portfolio website for **Chandan B**.
 
+## Sections
 
+1. Hero
+2. About Me
+3. Skills & Toolkit
+4. Projects
+5. Journey & Process
+6. Contact Me
 
-## Files
+## Features
 
-- `index.html` — page structure and content
-- `style.css` — responsive visual design
-- `script.js` — lightweight interactions
-- `resume.pdf` — current résumé
-- `assets/` — optional future assets
+- Animated hero signal/chart card
+- Atmospheric animated background
+- Glass navigation and surfaces
+- Interactive project-card hover effects
+- Interactive skills/toolkit cards
+- Hover preview + click/tap detail panel for tools
+- Responsive mobile navigation
+- Lightweight JavaScript and IntersectionObserver reveals
+- Reduced-motion support
+- Current résumé included
 
 ## Contact
 
 - Email: `chandanb.dev@gmail.com`
 - LinkedIn: `https://www.linkedin.com/in/chandan47`
 - GitHub: `https://github.com/chandanB47`
+
+## GitHub Repository
+
+https://github.com/chandanB47/chandanB47.github.io
 
 ## Run locally
 
@@ -35,14 +44,10 @@ python -m http.server 8000
 
 Then open `http://localhost:8000`.
 
-## GitHub Pages
+## Deploy
 
-Upload the files in this folder to:
+Upload the contents of this folder to the root of:
 
 `chandanB47/chandanB47.github.io`
 
 Keep `index.html` in the repository root.
-
-## Before publishing
-
-Replace the placeholder project links with the actual project/case-study URLs.
