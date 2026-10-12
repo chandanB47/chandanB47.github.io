@@ -1,89 +1,101 @@
-# Chandan B — Portfolio Website
+# Chandan B — Personal Portfolio
 
-🌐 **Live Portfolio:** https://chandanB47.github.io/
+<p align="center">
+  <strong>Data Analytics · Business Intelligence · Continuous Learning</strong>
+</p>
 
-A modern, responsive personal portfolio website for **Chandan B**.
+<p align="center">
+  <a href="https://chandanB47.github.io/">Live Portfolio</a> ·
+  <a href="https://github.com/chandanB47">GitHub Profile</a> ·
+  <a href="https://www.linkedin.com/in/chandan47">LinkedIn</a>
+</p>
 
-## Sections
+---
 
-1. Hero
-2. About Me
-3. Skills & Toolkit
-4. Projects
-5. Journey & Process
-6. Contact Me
+## Overview
 
-## Features
+Welcome to my personal portfolio website. I use this space to present my data analytics learning journey, technical skills, projects, and experience in one place.
 
-- Animated hero signal/chart card
-- Atmospheric animated background
-- Glass navigation and surfaces
-- Interactive project-card hover effects
-- Interactive skills/toolkit cards
-- Hover preview + click/tap detail panel for tools
-- Responsive mobile navigation
-- Lightweight JavaScript and IntersectionObserver reveals
-- Reduced-motion support
-- Current résumé included
+My current toolkit includes **SQL, Python, Power BI, and Excel**, with a focus on preparing data, exploring business questions, building dashboards, and communicating useful insights.
 
-## Contact
+🌐 **Live website:** [chandanB47.github.io](https://chandanB47.github.io/)
 
-- Email: `chandanb.dev@gmail.com`
-- LinkedIn: `https://www.linkedin.com/in/chandan47`
-- GitHub: `https://github.com/chandanB47`
+## Portfolio Sections
 
-## GitHub Repository
+| Section | What you'll find |
+|---|---|
+| **Hero** | Portfolio introduction and primary navigation |
+| **About Me** | Background, interests, and learning goals |
+| **Skills & Toolkit** | Technologies and tools I am developing |
+| **Projects** | Practical work and portfolio projects |
+| **Journey & Process** | My approach to learning and problem-solving |
+| **Experience** | Relevant experience and development |
+| **Contact** | Ways to connect with me |
 
-https://github.com/chandanB47/chandanB47.github.io
+## Tech Stack
 
-## Run locally
+- **SQL** — querying, joins, aggregations, data cleaning, and business analysis
+- **Python** — programming and data-focused practice projects
+- **Power BI** — data modeling, DAX, Power Query, and dashboard development
+- **Excel** — data preparation, analysis, and reporting
+- **Web technologies** — HTML, CSS, and JavaScript for the portfolio interface
+- **GitHub Pages** — hosting the static website
 
-```bash
-python -m http.server 8000
-```
+## Website Features
 
-Then open `http://localhost:8000`.
+- Responsive layout for desktop and mobile screens
+- Animated hero and atmospheric visual effects
+- Glass-style navigation and interface elements
+- Interactive project cards and hover effects
+- Interactive skills and toolkit cards
+- Tool detail interactions on hover and click/tap
+- Scroll-triggered reveal effects using `IntersectionObserver`
+- Reduced-motion support for accessibility
+- Résumé link and contact links
 
-## Deploy
+## Featured Work
 
-Upload the contents of this folder to the root of:
+Explore the [Projects section on my live portfolio](https://chandanB47.github.io/) for my current work.
 
-`chandanB47/chandanB47.github.io`
+One documented project is **Retail Store Operations & Analytics**, which uses SQL to explore retail operations and answer business questions.
 
-Keep `index.html` in the repository root.
+- [Browse my GitHub repositories](https://github.com/chandanB47?tab=repositories)
+- [Open the Retail Operations SQL project folder](https://github.com/chandanB47/Data-Science-Learning/tree/main/SQL/Milestone_Project_01_Retail_Operations)
+
+Project links may change as I refine and publish my work.
+
+## Run Locally
+
+This is a static website and can be run with Python's built-in HTTP server.
+
+1. Clone or download this repository.
+2. Open a terminal in the project root (the folder containing `index.html`).
+3. Run:
+
+   ```bash
+   python -m http.server 8000
+   ```
+
+4. Open [http://localhost:8000](http://localhost:8000) in your browser.
+
+You can also open `index.html` directly, although using a local server is preferable for testing.
+
+## Deployment with GitHub Pages
+
+The site is published through GitHub Pages.
+
+1. Keep `index.html` in the repository root.
+2. Commit and push the website files to the repository's publishing branch.
+3. In GitHub, open **Settings → Pages** and confirm the publishing source.
+4. Wait for the Pages deployment to finish, then verify the live website.
+
+Repository: [chandanB47/chandanB47.github.io](https://github.com/chandanB47/chandanB47.github.io)  
+Live site: [https://chandanB47.github.io/](https://chandanB47.github.io/)
 
 
-## V3 updates
 
-- Added Experience section
-- Rebuilt hero with animated orbit system, signal wave and moving particles
-- Added visual scroll progress rail and scroll cue
-- Preserved lightweight mobile-first scrolling
+---
 
-
-## V4 hero
-
-Replaced the previous orbit/data-visual hero with a cleaner editorial identity-focused hero. The rest of the portfolio structure and sections are unchanged.
-
-
-## V5 hero update
-
-The hero now uses a distinct kinetic visual style with moving geometry, waveform motion, scanline, animated grid, floating labels, ambient gradients, kinetic typography, and subtle desktop pointer depth.
-
-
-## V6 hero
-
-Reworked the hero into a cinematic focus-poster composition: oversized identity typography, a dark workspace silhouette, monitor glow, controlled particles, scan/grid atmosphere, focus rings and restrained motion.
-
-
-## Latest visual update
-
-- Hero cover uses a medium slate / cool gray-blue gradient rather than near-white or full black.
-- Keeps the silver geometric `CHANDAN B` wordmark, neon-lime accent, glass navigation, SQL command pill, year chip, and project / résumé actions.
-- Existing About, Skills, Work, Experience, and Contact sections are retained.
-- The hero typing animation click handler was cleaned up so the cover listener is not registered repeatedly.
-- The Retail Operations SQL Analytics card links to the known project folder in `Data-Science-Learning`; other project links remain on the GitHub profile until their exact repository URLs are verified.
-
-## Run locally
-
-Open `index.html` in a browser. Google Fonts are loaded from the internet; system fallbacks are included. For GitHub Pages, upload the contents of this folder to the publishing branch/root.
+<p align="center">
+  <em>Learning continuously. Building practically. Improving with every iteration.</em>
+</p>
