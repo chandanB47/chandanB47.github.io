@@ -74,3 +74,16 @@ The hero now uses a distinct kinetic visual style with moving geometry, waveform
 ## V6 hero
 
 Reworked the hero into a cinematic focus-poster composition: oversized identity typography, a dark workspace silhouette, monitor glow, controlled particles, scan/grid atmosphere, focus rings and restrained motion.
+
+
+## Latest visual update
+
+- Hero cover uses a medium slate / cool gray-blue gradient rather than near-white or full black.
+- Keeps the silver geometric `CHANDAN B` wordmark, neon-lime accent, glass navigation, SQL command pill, year chip, and project / résumé actions.
+- Existing About, Skills, Work, Experience, and Contact sections are retained.
+- The hero typing animation click handler was cleaned up so the cover listener is not registered repeatedly.
+- The Retail Operations SQL Analytics card links to the known project folder in `Data-Science-Learning`; other project links remain on the GitHub profile until their exact repository URLs are verified.
+
+## Run locally
+
+Open `index.html` in a browser. Google Fonts are loaded from the internet; system fallbacks are included. For GitHub Pages, upload the contents of this folder to the publishing branch/root.
