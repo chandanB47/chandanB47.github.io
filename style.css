@@ -192,8 +192,8 @@ footer{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;paddin
 @media(max-width:700px){.hero .hero-c{width:90vw}.gpill{width:46%}.rt{margin-right:0}}
 
 /* torn paper hero edge */
-.hero{padding-bottom:190px}
-.torn{position:absolute;left:0;bottom:-2px;width:100%;height:clamp(70px,10vw,150px);z-index:3;display:block;pointer-events:none}
+.hero{padding-bottom:200px}
+.torn{position:absolute;left:0;bottom:-4px;width:100%;height:clamp(70px,10vw,150px);z-index:3;display:block;pointer-events:none}
 .t1{fill:#bdbdbd;filter:drop-shadow(0 -8px 12px rgba(0,0,0,.55))}.t2{fill:#e9e9e6}.t3{fill:#f6f8fc}
 .xwrap{margin-top:-4px;background:#f6f8fc}
 
@@ -277,3 +277,531 @@ footer{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;paddin
  .hero .hero-c{width:94vw}.hero .role{font-size:.95rem}.hero .row{margin-top:-1vw}.hero .gpill{width:58%;height:52px;padding:0 12px;font-size:.7rem}.hero .rt{gap:6px}.hero .chip{padding:7px 12px;font-size:.78rem}.hero .hero-ctas{gap:9px;flex-wrap:wrap;margin-top:28px}.hero .hero-ctas .btn{padding:12px 16px;font-size:.82rem}.hero .hint{white-space:normal;text-align:center;gap:8px;font-size:.8rem;margin-top:28px}.hero .wm{width:100%}
 }
 @media(prefers-reduced-motion:reduce){.hero .gr,.hero .gl,.hero .hint span{animation:none}}
+
+
+/* =====================================================================
+   CINEMATIC MOTION LAYER  (additive — layout, colours & content unchanged)
+   ===================================================================== */
+@property --ang{syntax:"<angle>";inherits:false;initial-value:0deg}
+
+/* ---- film grain + soft vignette ---- */
+.cin-grain{position:fixed;inset:-15%;z-index:9998;pointer-events:none;opacity:.06;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 .95 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+  animation:grain .9s steps(1) infinite}
+@keyframes grain{0%{transform:translate(0,0)}17%{transform:translate(-4%,3%)}34%{transform:translate(3%,-5%)}51%{transform:translate(-3%,4%)}68%{transform:translate(5%,2%)}85%{transform:translate(-2%,-3%)}}
+.cin-vig{position:fixed;inset:0;z-index:9997;pointer-events:none;background:radial-gradient(ellipse at 50% 45%,transparent 60%,rgba(8,16,28,.09) 100%)}
+
+/* ---- cinematic loader ---- */
+#loader::before{content:"";position:absolute;left:0;right:0;top:50%;height:2px;background:linear-gradient(90deg,transparent,var(--blue),var(--lime),var(--amber),transparent);transform:scaleX(0);animation:streak 1.9s cubic-bezier(.65,0,.2,1) forwards}
+@keyframes streak{0%{transform:scaleX(0);opacity:0}15%{opacity:1}60%{transform:scaleX(1)}100%{transform:scaleX(1);opacity:0}}
+.ld-cb::after{content:"";position:absolute;inset:-7px;border-radius:50%;border:2px solid transparent;border-top-color:var(--ink);border-right-color:var(--blue);animation:spin 1.1s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.ld-w{animation:wd2 .6s cubic-bezier(.2,.8,.2,1)}
+@keyframes wd2{from{opacity:0;transform:translateY(34px) scale(.96);filter:blur(10px)}}
+.ld-n,.ld-w,.ld-cb{transition:opacity .5s,transform .8s cubic-bezier(.7,0,.2,1)}
+#loader.out .ld-n{opacity:0;transform:translateY(-60px)}
+#loader.out .ld-w{opacity:0;transform:translateY(-40px)}
+#wipe{position:fixed;inset:0;z-index:998;background:linear-gradient(180deg,#d6ff55,#b9f21c);transition:transform 1s cubic-bezier(.77,0,.18,1) .16s}
+#wipe.out{transform:translateY(-100%)}
+
+/* ---- nav entrance ---- */
+.pn{opacity:0;transform:translateY(-26px) scale(.96);transition:box-shadow .3s,opacity .9s .9s,transform 1.1s cubic-bezier(.16,.9,.2,1) .9s}
+.go .pn{opacity:1;transform:none}
+
+/* ---- hero: staged entrance ---- */
+.h-in{transform:translateY(64px) scale(.97);filter:blur(14px);transition:opacity 1.3s cubic-bezier(.16,.8,.2,1),transform 1.5s cubic-bezier(.16,.8,.2,1),filter 1.3s cubic-bezier(.16,.8,.2,1)}
+.go .hero .h-in:nth-child(1){transition-delay:.45s}
+.go .hero .h-in:nth-child(2){transition-delay:.55s}
+.go .hero .h-in:nth-child(3){transition-delay:.95s}
+.go .hero .h-in:nth-child(4){transition-delay:1.1s}
+.go .hero .h-in:nth-child(5){transition-delay:1.3s}
+.wm .gp{transform-box:fill-box;transform-origin:50% 100%;transform:translateY(100px) scale(.88);transition:opacity 1s cubic-bezier(.2,.7,.2,1),transform 1.4s cubic-bezier(.17,1.12,.3,1)}
+.go .wm .gp{opacity:1;transform:none}
+.wm{will-change:transform;transform-origin:50% 60%}
+.wm .shine{pointer-events:none;mix-blend-mode:screen}
+.hero .bg{animation:limepulse 4.2s ease-in-out 2.6s infinite}
+@keyframes limepulse{50%{filter:drop-shadow(0 0 38px rgba(198,255,46,.95))}}
+
+/* hero atmosphere */
+.hero::after{inset:0 -8%;animation:leak 16s ease-in-out infinite alternate}
+@keyframes leak{from{transform:translateX(-4%);opacity:.65}to{transform:translateX(4%);opacity:1}}
+.hero .hero-c{will-change:transform,opacity}
+.cin-dust{position:absolute;inset:0;width:100%;height:100%;z-index:1;pointer-events:none}
+.cin-spot{position:absolute;left:0;top:0;width:90vmin;height:90vmin;margin:-45vmin 0 0 -45vmin;z-index:1;pointer-events:none;opacity:0;transition:opacity .8s;will-change:transform;
+  background:radial-gradient(closest-side,rgba(255,255,255,.34),rgba(198,255,46,.12) 50%,transparent)}
+.cin-spot.on{opacity:1}
+.hero .spot,.hero .gr,.hero .gl{will-change:translate}
+
+/* ---- scroll reveals (replace simple fades with cinematic moves) ---- */
+.rv.in{animation:rvUp 1.15s cubic-bezier(.16,.8,.2,1) var(--dl,0s) backwards}
+@keyframes rvUp{from{opacity:0;transform:translate3d(0,70px,0) scale(.965);filter:blur(10px)}to{opacity:1;transform:none;filter:blur(0)}}
+.sk.rv.in{animation-name:rvFlip}
+@keyframes rvFlip{from{opacity:0;transform:perspective(900px) rotateX(-32deg) translate3d(0,70px,0) scale(.93);filter:blur(8px)}to{opacity:1;transform:none;filter:blur(0)}}
+.pj.rv.in{animation-name:rvCurtain;animation-duration:1.35s}
+@keyframes rvCurtain{from{opacity:0;clip-path:inset(0 0 100% 0 round 28px);transform:translate3d(0,60px,0) scale(.97)}60%{opacity:1}to{opacity:1;clip-path:inset(0 0 0 0 round 28px);transform:none}}
+.job.rv.in{animation-name:rvSlide}
+@keyframes rvSlide{from{opacity:0;transform:translate3d(-70px,30px,0);filter:blur(8px)}to{opacity:1;transform:none;filter:blur(0)}}
+.panel.rv.in{animation-name:rvSlideR}
+@keyframes rvSlideR{from{opacity:0;transform:translate3d(70px,30px,0) rotate(1.5deg);filter:blur(8px)}to{opacity:1;transform:none;filter:blur(0)}}
+.step.rv.in,.stat.rv.in{animation-name:rvPop}
+@keyframes rvPop{from{opacity:0;transform:translate3d(0,50px,0) scale(.82)}60%{opacity:1;transform:translate3d(0,-6px,0) scale(1.03)}to{opacity:1;transform:none}}
+.contact.rv.in{animation-name:rvZoom;animation-duration:1.4s}
+@keyframes rvZoom{from{opacity:0;clip-path:inset(10% 6% round 36px);transform:scale(.92)}to{opacity:1;clip-path:inset(0 round 36px);transform:none}}
+
+/* split-heading word mask */
+.w{display:inline-block;overflow:hidden;vertical-align:top;padding:.12em .08em .16em;margin:-.12em -.08em -.16em}
+.wi{display:inline-block;transform:translate3d(0,118%,0) rotate(6deg);transform-origin:0 100%;transition:transform 1.15s cubic-bezier(.16,.9,.2,1) calc(var(--i,0)*.075s + .1s)}
+.rv.in .wi,.contact.in .wi{transform:none}
+
+/* eyebrow line draws in */
+.rv .ey::before{transform:scaleX(0);transform-origin:left;transition:transform .9s cubic-bezier(.2,.8,.2,1) .25s}
+.rv.in .ey::before{transform:none}
+
+/* timeline draw */
+.tl::before{transform:scaleX(0);transform-origin:left;transition:transform 1.9s cubic-bezier(.65,0,.2,1) .35s}
+.tl.in::before{transform:scaleX(1)}
+.tl .tli{opacity:0;transform:translate3d(0,26px,0);transition:opacity .9s,transform 1s cubic-bezier(.16,.9,.2,1)}
+.tl.in .tli{opacity:1;transform:none}
+.tl.in .tli:nth-child(1){transition-delay:.35s}.tl.in .tli:nth-child(2){transition-delay:.85s}.tl.in .tli:nth-child(3){transition-delay:1.35s}
+.tl .d{transform:scale(0);transition:transform .8s cubic-bezier(.2,1.5,.3,1)}
+.tl.in .tli:nth-child(1) .d{transform:none;transition-delay:.45s}.tl.in .tli:nth-child(2) .d{transform:none;transition-delay:.95s}.tl.in .tli:nth-child(3) .d{transform:none;transition-delay:1.45s}
+
+/* experience */
+.job.in .no{animation:noPop 1s cubic-bezier(.2,1.4,.3,1) .25s backwards}
+@keyframes noPop{from{transform:scale(0) rotate(-120deg)}to{transform:none}}
+.job .jc li{opacity:0;transform:translate3d(-22px,0,0);transition:opacity .8s,transform .9s cubic-bezier(.16,.9,.2,1)}
+.job.in .jc li{opacity:1;transform:none}
+.job.in .jc li:nth-child(1){transition-delay:.55s}.job.in .jc li:nth-child(2){transition-delay:.7s}.job.in .jc li:nth-child(3){transition-delay:.85s}
+.job .tags span{opacity:0;transform:translate3d(0,14px,0) scale(.9);transition:opacity .6s,transform .7s cubic-bezier(.2,1.3,.3,1)}
+.job.in .tags span{opacity:1;transform:none}
+.job.in .tags span:nth-child(1){transition-delay:1s}.job.in .tags span:nth-child(2){transition-delay:1.1s}.job.in .tags span:nth-child(3){transition-delay:1.2s}
+
+/* project cards: glare + depth */
+.pj>.glr{position:absolute;inset:0;z-index:2;pointer-events:none;border-radius:inherit;opacity:0;transition:opacity .35s;
+  background:radial-gradient(420px circle at var(--gx,50%) var(--gy,50%),rgba(255,255,255,.65),transparent 60%);mix-blend-mode:soft-light}
+.pj:hover>.glr{opacity:1}
+.pj::after{translate:calc(var(--px,0)*-30px) calc(var(--py,0)*-30px)}
+.pj .ic{transition:transform .5s cubic-bezier(.2,1.3,.3,1)}.pj:hover .ic{transform:rotate(-8deg) scale(1.12)}
+.pj .tags span{transition:transform .3s,border-color .3s}.pj:hover .tags span{transform:translateY(-2px)}
+
+/* skills: tilt-friendly */
+.sk{transform-style:preserve-3d;will-change:transform}
+
+/* marquee reacts to scroll velocity */
+.xt span{transform:skewX(var(--sk,0deg))}
+
+/* stats */
+.stat{transition:transform .4s,box-shadow .4s}.stat:hover{transform:translateY(-6px);box-shadow:var(--sh)}
+.stat.in b{animation:glowN 2.4s ease-out .6s}
+@keyframes glowN{40%{text-shadow:0 0 34px rgba(47,107,255,.55)}}
+
+/* contact: living glow + rotating light border */
+.blob{animation:drift 13s ease-in-out infinite alternate}
+@keyframes drift{from{transform:translate(0,0) scale(1)}to{transform:translate(-60px,50px) scale(1.18)}}
+.contact::after{content:"";position:absolute;inset:0;border-radius:inherit;padding:2px;pointer-events:none;
+  background:conic-gradient(from var(--ang),transparent 0 62%,var(--lime) 78%,var(--blue) 90%,transparent);
+  -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;
+  mask:linear-gradient(#000 0 0) content-box exclude,linear-gradient(#000 0 0);animation:ang 7s linear infinite}
+@keyframes ang{to{--ang:360deg}}
+.contact em .wi{background:linear-gradient(100deg,var(--blue) 30%,#7fa6ff 50%,var(--blue) 70%);background-size:220% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:shimmer 5s linear infinite}
+@keyframes shimmer{to{background-position:-220% 0}}
+
+/* ---- custom cursor ---- */
+body.cur,body.cur a,body.cur button,body.cur .sk,body.cur #cover{cursor:none}
+.cur-dot,.cur-ring{position:fixed;left:0;top:0;z-index:10000;pointer-events:none;border-radius:50%;opacity:0;mix-blend-mode:difference;transition:opacity .3s}
+.cur-dot{width:8px;height:8px;margin:-4px 0 0 -4px;background:#fff}
+.cur-ring{width:40px;height:40px;margin:-20px 0 0 -20px;border:1.5px solid #fff;display:grid;place-items:center;transition:width .4s cubic-bezier(.2,.8,.2,1),height .4s cubic-bezier(.2,.8,.2,1),margin .4s cubic-bezier(.2,.8,.2,1),background .3s,opacity .3s,scale .2s}
+.cur-ring span{font:700 .6rem Inter,sans-serif;letter-spacing:.1em;text-transform:uppercase;color:#000;opacity:0;transition:opacity .2s}
+.cur-on .cur-dot,.cur-on .cur-ring{opacity:1}
+.cur-ring.hov{width:64px;height:64px;margin:-32px 0 0 -32px;background:#fff}
+.cur-ring.soft{width:76px;height:76px;margin:-38px 0 0 -38px;background:rgba(255,255,255,.18)}
+.cur-ring.lbl{width:88px;height:88px;margin:-44px 0 0 -44px;background:#fff}
+.cur-ring.lbl span{opacity:1}
+
+/* ---- accessibility: calm everything for reduced-motion ---- */
+.noanim .wm .gp,.noanim .wi,.noanim .tl .tli,.noanim .tl .d,.noanim .job .jc li,.noanim .job .tags span,.noanim .pn{opacity:1;transform:none}
+.noanim .tl::before,.noanim .rv .ey::before{transform:none}
+@media(prefers-reduced-motion:reduce){
+  .wm .gp,.wi,.tl .tli,.tl .d,.job .jc li,.job .tags span,.pn{opacity:1!important;transform:none!important}
+  .tl::before,.rv .ey::before{transform:none!important}
+  .cin-grain,.cin-dust,.cin-spot,#wipe{display:none}
+  .hero::after,.blob,.contact::after,.contact em .wi{animation:none!important}
+}
+@media(max-width:700px){.cin-grain{opacity:.045}.cin-spot{width:120vmin;height:120vmin;margin:-60vmin 0 0 -60vmin}}
+
+/* fix: hero's .ex circle style was leaking onto skill-card sub-text */
+.sk .ex{width:auto;height:auto;border:0;border-radius:0;background:none}
+
+
+/* =====================  v2 ADDITIONS  ===================== */
+html.lenis{scroll-behavior:auto!important}
+.cin-bar{position:fixed;left:0;right:0;height:12vh;background:#070b12;z-index:9996;pointer-events:none;transition:transform 1.3s cubic-bezier(.77,0,.18,1)}
+.cin-bar.t{top:0}.cin-bar.b{bottom:0}
+.cin-bar.t.open{transform:translateY(-101%)}.cin-bar.b.open{transform:translateY(101%)}
+h2{will-change:translate}
+@media(prefers-reduced-motion:reduce){.cin-bar{display:none}}
+
+
+/* =====================  v3 — NEW HERO  ===================== */
+.hero{place-items:center start;padding:120px clamp(22px,6vw,110px) 120px;text-align:left}
+.hero .hero-c{width:min(56%,720px);align-items:flex-start;text-align:left;margin:0}
+.hero .role{margin:0 0 12px 4px;font-size:clamp(.95rem,1.5vw,1.2rem)}
+
+/* chrome headline, letter by letter */
+.hero h1{font-family:Unbounded,Inter,sans-serif;font-weight:800;font-size:clamp(2.1rem,6.3vw,6.1rem);line-height:1.08;letter-spacing:-.02em;text-transform:uppercase;white-space:nowrap;width:auto;margin:0;display:flex;align-items:center;gap:.2em}
+.hero .nm,.hero .nb{background:none;display:inline-flex;animation:none;filter:none}
+.hero .lt{display:inline-block;opacity:0;transform:translateY(70px) scale(.9);filter:blur(12px);
+  transition:opacity 1s cubic-bezier(.16,.8,.2,1),transform 1.3s cubic-bezier(.17,1.1,.3,1),filter 1s cubic-bezier(.16,.8,.2,1);transition-delay:calc(.6s + var(--i)*.075s);
+  background:linear-gradient(105deg,transparent 42%,rgba(255,255,255,.95) 50%,transparent 58%) 160% 0/300% 100% no-repeat,linear-gradient(180deg,#fff 12%,#9d9d9d 100%);
+  -webkit-background-clip:text;background-clip:text;color:transparent;padding:.04em .02em;
+  animation:lsh 6.5s ease-in-out calc(2.8s + var(--i)*.13s) infinite}
+.go .hero .lt{opacity:1;transform:none;filter:none}
+@keyframes lsh{0%{background-position:160% 0,0 0}38%,100%{background-position:-60% 0,0 0}}
+.hero .nb{filter:drop-shadow(0 0 24px rgba(198,255,46,.55));animation:nbp 4.2s ease-in-out 2.8s infinite}
+.hero .nb .lt{background:linear-gradient(105deg,transparent 42%,rgba(255,255,255,.9) 50%,transparent 58%) 160% 0/300% 100% no-repeat,linear-gradient(180deg,#f4ff9a,#b7ff2e 55%,#7fc400);-webkit-background-clip:text;background-clip:text}
+@keyframes nbp{50%{filter:drop-shadow(0 0 42px rgba(198,255,46,.95))}}
+
+/* typing pill + chips */
+.hero .row{width:auto;margin:clamp(14px,1.8vw,26px) 0 0;gap:14px}
+.hero .gpill{width:clamp(230px,23vw,340px);height:clamp(46px,4.2vw,58px);padding:0 22px;font-size:clamp(.7rem,.95vw,.85rem)}
+.hero .gpill::after{display:block}
+.hero .rt{margin:0;gap:10px}
+
+/* ctas with glowing ring */
+.hero .hero-ctas{align-self:flex-start;justify-content:flex-start;margin-top:clamp(26px,3.2vw,46px)}
+.hero .btn.lime{position:relative}
+.hero .btn.lime::after{content:"";position:absolute;inset:-7px;border-radius:999px;border:1.5px solid rgba(198,255,46,.8);pointer-events:none;animation:ringp 2.6s ease-out infinite}
+@keyframes ringp{0%{transform:scale(.96);opacity:.9}100%{transform:scale(1.14,1.4);opacity:0}}
+
+/* bottom hint, centred on the whole hero */
+.hero .hint{position:absolute;bottom:34px;left:0;right:0;margin:0 auto;width:max-content;align-self:auto;z-index:3}
+.go .hero .hint{transition-delay:1.5s}
+
+/* ribbon knot */
+.knot{position:absolute;right:-10%;top:50%;translate:0 -50%;width:min(64vw,1000px);aspect-ratio:1;z-index:1;pointer-events:none;
+  opacity:0;transform:scale(.78) rotate(-10deg);transition:opacity 1.8s ease .6s,transform 2.4s cubic-bezier(.16,.9,.2,1) .6s}
+.go .knot{opacity:1;transform:none}
+
+/* glass card */
+.gcard{position:absolute;right:7%;bottom:15%;width:clamp(150px,19vw,290px);padding:14px 16px 16px;border-radius:16px;z-index:2;display:flex;flex-direction:column;gap:2px;
+  background:linear-gradient(135deg,rgba(255,255,255,.3),rgba(255,255,255,.07));border:1px solid rgba(255,255,255,.5);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  box-shadow:0 22px 50px rgba(8,16,26,.3),inset 0 1px 0 rgba(255,255,255,.65);font:500 clamp(.46rem,.62vw,.62rem)/1.8 "JetBrains Mono",monospace;letter-spacing:.09em;color:rgba(255,255,255,.88);
+  opacity:0;translate:0 60px;transition:opacity 1.2s ease 1.5s,translate 1.5s cubic-bezier(.16,.9,.2,1) 1.5s;animation:cfloat 7s ease-in-out 3s infinite}
+.go .gcard{opacity:1;translate:none}
+.gcard .dim{opacity:.6}
+.gcard .slot{margin-top:12px;height:clamp(26px,2.6vw,38px);border-radius:10px;background:rgba(10,20,30,.45);border:1px solid rgba(255,255,255,.3);display:grid;place-items:center;overflow:hidden}
+.gcard .slot i{display:block;width:46%;height:6px;border-radius:4px;background:#c6ff2e;box-shadow:0 0 14px #c6ff2e;animation:slotp 2.6s ease-in-out infinite}
+@keyframes cfloat{50%{transform:translateY(-12px) rotate(-1.2deg)}}
+@keyframes slotp{0%,100%{transform:translateX(-30%) scaleX(.7)}50%{transform:translateX(30%) scaleX(1.15)}}
+
+/* faint code + constellations */
+.code{position:absolute;left:4%;margin:0;font:400 clamp(.5rem,.66vw,.68rem)/1.8 "JetBrains Mono",monospace;color:rgba(255,255,255,.34);white-space:pre;pointer-events:none;z-index:0;
+  -webkit-mask-image:linear-gradient(90deg,#000 40%,transparent);mask-image:linear-gradient(90deg,#000 40%,transparent);opacity:0;transition:opacity 2s ease 1.2s}
+.code.c1{top:11%}.code.c2{bottom:15%}
+.go .code{opacity:1;animation:flick 5s steps(1) 3s infinite}
+@keyframes flick{0%,92%{opacity:1}94%{opacity:.5}96%{opacity:1}98%{opacity:.7}}
+.cons{position:absolute;left:44%;width:clamp(46px,5vw,76px);z-index:1;pointer-events:none;opacity:0;transition:opacity 1.5s ease 1.4s}
+.cons.a{top:15%}.cons.b{bottom:14%}
+.go .cons{opacity:1;animation:cfl 6s ease-in-out 3s infinite}.go .cons.b{animation-delay:4.5s}
+.cons circle{transform-box:fill-box;transform-origin:center;animation:twk 2.8s ease-in-out infinite}
+.cons circle:nth-child(2n){animation-delay:.6s}.cons circle:nth-child(3n){animation-delay:1.2s}
+@keyframes twk{50%{transform:scale(1.7);opacity:.55}}
+@keyframes cfl{50%{transform:translateY(-8px)}}
+
+@media(max-width:900px){
+  .hero{padding:110px 20px 120px;place-items:center start}
+  .hero .hero-c{width:100%}
+  .hero h1{font-size:clamp(2rem,10.4vw,4.4rem)}
+  .knot{width:140vw;right:-56vw;top:auto;bottom:-22%;translate:none;opacity:0}
+  .go .knot{opacity:.62}
+  .gcard,.code,.cons{display:none}
+  .hero .gpill{width:min(58vw,300px)}
+}
+@media(prefers-reduced-motion:reduce){
+  .hero .lt,.knot,.gcard,.code,.cons{opacity:1!important;transform:none!important;translate:none!important;filter:none!important;animation:none!important}
+  .hero .nb{animation:none!important}.hero .btn.lime::after{animation:none!important}
+}
+.noanim .hero .lt,.noanim .knot,.noanim .gcard,.noanim .code,.noanim .cons{opacity:1;transform:none;translate:none;filter:none}
+
+
+/* =====================  v4 — HERO USES YOUR RENDER AS BACKGROUND  ===================== */
+.hero{background:#181f28;color:#fff}
+.hero::before,.hero::after{display:none}
+.hero .spot{opacity:.25}
+.hero .gr,.hero .gl{opacity:.5}
+.hero-art{position:absolute;inset:0;z-index:0;overflow:hidden;pointer-events:none;opacity:0;transform:scale(1.18);filter:blur(14px);transform-origin:70% 50%}
+.hero-art picture,.hero-art img{display:block;width:100%;height:100%}
+.hero-art img{object-fit:cover;object-position:right center;will-change:transform;transform:scale(1.06)}
+.go .hero-art{animation:artin 2.6s cubic-bezier(.16,.9,.2,1) .35s forwards,artbreath 16s ease-in-out 3s infinite alternate}
+@keyframes artin{to{opacity:1;transform:scale(1);filter:blur(0)}}
+@keyframes artbreath{from{transform:scale(1)}to{transform:scale(1.045) translate3d(-1%,.6%,0)}}
+/* soft legibility veil on the text side + slow light pass over the neon strands */
+.hero-art::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(18,24,32,.55) 0,rgba(18,24,32,.15) 38%,transparent 60%),linear-gradient(105deg,transparent 40%,rgba(198,255,46,.16) 50%,transparent 60%) -120% 0/60% 100% no-repeat;animation:pass 7s ease-in-out 3.2s infinite;mix-blend-mode:screen}
+@keyframes pass{0%{background-position:0 0,-120% 0}45%,100%{background-position:0 0,260% 0}}
+.cin-spot{mix-blend-mode:screen;background:radial-gradient(closest-side,rgba(198,255,46,.2),rgba(255,255,255,.07) 45%,transparent)}
+.hero .role{color:#e7ecf2}.hero .role span{color:#9aa5b3}
+.hero .gpill{background:rgba(255,255,255,.07);border-color:rgba(255,255,255,.2)}
+.hero .chip,.hero .rt .ex{background:rgba(255,255,255,.07);border-color:rgba(255,255,255,.25)}
+.hero .btn.ghost{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.3)}
+
+@media(max-width:900px){
+  .hero{place-items:start;padding:112px 20px 120px}
+  .hero-art img{object-position:center bottom}
+  .hero-art::after{background:linear-gradient(180deg,rgba(18,24,32,.35) 0,transparent 45%),linear-gradient(105deg,transparent 40%,rgba(198,255,46,.16) 50%,transparent 60%) -120% 0/60% 100% no-repeat}
+}
+@media(prefers-reduced-motion:reduce){.hero-art{opacity:1!important;transform:none!important;filter:none!important;animation:none!important}.hero-art::after{animation:none!important}}
+.noanim .hero-art{opacity:1;transform:none;filter:none}
+.hero .hint{text-shadow:0 2px 14px rgba(0,0,0,.65)}
+
+
+/* =====================  v5 — reference-matched hero layout  ===================== */
+/* Keep the original high-resolution ribbon artwork and real HTML controls. */
+.hero{
+  min-height:100svh;
+  padding:clamp(104px,12vh,124px) clamp(24px,7.2vw,130px) 112px;
+  place-items:center start;
+  background:#17212d;
+  isolation:isolate;
+}
+.hero .hero-c{width:min(56%,720px);max-width:720px;align-items:flex-start;text-align:left}
+.hero .role{font-size:clamp(.98rem,1.65vw,1.2rem);margin:0 0 12px 4px}
+.hero h1{font-size:clamp(2.1rem,7.1vw,6.1rem);line-height:1.04;letter-spacing:-.025em}
+.hero .row{margin-top:clamp(18px,2.3vw,26px)}
+.hero .hero-ctas{margin-top:clamp(28px,3.2vw,46px)}
+.hero .hint{bottom:clamp(24px,5.2vh,36px)}
+.hero-art picture,.hero-art img{width:100%;height:100%;display:block}
+.hero-art img{object-fit:cover;object-position:right center;image-rendering:auto}
+.hero-art{transform-origin:72% 50%;backface-visibility:hidden}
+.hero-art::after{pointer-events:none}
+
+@media(max-width:900px){
+  .hero{padding:112px 20px 112px}
+  .hero .hero-c{width:min(72%,620px)}
+  .hero h1{font-size:clamp(2.15rem,8.8vw,5rem)}
+  .hero-art img{object-position:center bottom}
+}
+@media(max-width:600px){
+  .hero{min-height:760px;padding:112px 20px 100px;place-items:start center}
+  .hero .hero-c{width:100%;max-width:100%;align-items:flex-start}
+  .hero h1{font-size:clamp(2rem,10.4vw,4rem);max-width:100%;white-space:nowrap;gap:.12em}
+  .hero .row{width:100%;gap:8px;flex-wrap:wrap}
+  .hero .gpill{width:min(64vw,300px)}
+  .hero .hero-ctas{align-self:flex-start;flex-wrap:wrap;gap:12px}
+  .hero .hint{left:16px;right:16px;width:auto;white-space:normal;text-align:center}
+  .hero-art img{object-position:center bottom}
+}
+@media(prefers-reduced-motion:reduce){
+  .hero-art,.hero-art::after{animation:none!important}
+}
+
+
+/* =====================  v6 — crisp artwork + balanced title spacing  ===================== */
+/* Use the high-resolution source artwork without a heavy entrance blur. */
+.hero-art{opacity:1;transform:none;filter:none;transform-origin:72% 50%;}
+.go .hero-art{animation:artbreath-clear 18s ease-in-out 1s infinite alternate;}
+@keyframes artbreath-clear{from{transform:scale(1)}to{transform:scale(1.018) translate3d(-.25%,.15%,0)}}
+.hero-art img{image-rendering:auto;backface-visibility:hidden;}
+.hero h1{font-size:clamp(2.1rem,6.6vw,5.65rem);letter-spacing:-.018em;gap:.26em;}
+.hero .nm{flex:0 0 auto;}
+.hero .nb{flex:0 0 auto;margin-left:.015em;}
+@media(max-width:900px){
+  .hero h1{font-size:clamp(2.15rem,8.1vw,4.6rem);gap:.23em;}
+  .hero-art img{object-position:center bottom;}
+}
+@media(max-width:600px){
+  .hero h1{font-size:clamp(2rem,9.6vw,3.7rem);gap:.2em;}
+}
+@media(prefers-reduced-motion:reduce){.hero-art,.go .hero-art{opacity:1;transform:none;filter:none;animation:none!important}}
+
+
+/* v7 — refined reference match: crisp left-aligned name + torn neon paint edge */
+.hero{padding-left:clamp(24px,5.4vw,96px);padding-right:clamp(24px,5.4vw,96px)}
+.hero .hero-c{width:min(58%,760px);max-width:760px}
+.hero h1{font-size:clamp(2.1rem,6.25vw,6rem);letter-spacing:-.022em;gap:.22em}
+.hero::after{
+  content:"";display:block;position:absolute;z-index:1;left:0;right:0;bottom:-1px;
+  height:clamp(82px,13vw,176px);pointer-events:none;
+  background:url("assets/paint-tear.svg") center bottom/100% 100% no-repeat;
+}
+.hero .hint{z-index:3;bottom:clamp(12px,2.2vh,24px);color:#303b49;text-shadow:none}
+.hero .hint span{color:#303b49}
+.hero .hero-c{z-index:2}
+.hero .hero-ctas .btn{padding:13px 23px;font-size:.92rem}
+.hero .gpill{height:clamp(48px,4.6vw,62px);width:min(30%,400px);padding:0 22px;font-size:.86rem}
+.hero .chip{padding:8px 18px;font-size:.9rem}
+@media(max-width:900px){
+  .hero{padding-left:24px;padding-right:24px}
+  .hero .hero-c{width:min(74%,620px)}
+  .hero h1{font-size:clamp(2.15rem,8vw,4.7rem)}
+  .hero .hint{bottom:10px}
+}
+@media(max-width:600px){
+  .hero{padding-left:20px;padding-right:20px}
+  .hero .hero-c{width:100%}
+  .hero h1{font-size:clamp(1.85rem,9.3vw,3.7rem);gap:.14em}
+  .hero::after{height:104px;background-size:auto 100%;background-repeat:repeat-x}
+  .hero .hint{font-size:.78rem}
+}
+@media(prefers-reduced-motion:reduce){.hero::after{animation:none!important}}
+
+
+/* v8 — fix paint-tear anchoring and prevent the command pill from collapsing */
+.hero{position:relative;isolation:isolate;overflow:hidden}
+.hero::after{
+  content:"" !important;
+  display:block !important;
+  position:absolute !important;
+  top:auto !important;
+  bottom:0 !important;
+  left:0 !important;
+  right:0 !important;
+  width:100% !important;
+  height:clamp(118px,13vw,178px) !important;
+  margin:0 !important;
+  padding:0 !important;
+  background-image:url("assets/paint-tear.svg") !important;
+  background-repeat:no-repeat !important;
+  background-position:center bottom !important;
+  background-size:100% 100% !important;
+  transform:none !important;
+  opacity:1 !important;
+  pointer-events:none !important;
+  z-index:1 !important;
+}
+.hero .hero-c{position:relative;z-index:2;width:min(58%,760px);max-width:760px}
+.hero h1{white-space:nowrap;max-width:100%;gap:clamp(.18em,.22em,.24em)}
+.hero .row{
+  display:flex;
+  align-items:center;
+  flex-wrap:nowrap;
+  gap:14px;
+  width:max-content;
+  max-width:100%;
+  margin-top:clamp(18px,2.3vw,26px);
+}
+.hero .gpill{
+  box-sizing:border-box;
+  flex:0 1 clamp(300px,28vw,400px);
+  width:clamp(300px,28vw,400px) !important;
+  min-width:0 !important;
+  max-width:calc(100vw - 190px);
+  height:clamp(48px,4.6vw,62px);
+  padding:0 22px;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:clip;
+  display:flex;
+  align-items:center;
+  font-size:clamp(.76rem,.86vw,.9rem);
+}
+.hero .gpill::after{flex:0 0 2px}
+.hero .rt{display:flex;flex:0 0 auto;align-items:center;gap:10px}
+.hero .hero-ctas{position:relative;z-index:3;display:flex;align-items:center;flex-wrap:nowrap;gap:12px;margin-top:clamp(25px,3vw,42px)}
+.hero .hero-ctas .btn{padding:12px 22px;font-size:.9rem;white-space:nowrap}
+.hero .hint{z-index:4;bottom:clamp(20px,2.5vh,30px);color:#303b49;text-shadow:none}
+.hero .hint span{color:#303b49}
+@media(max-width:900px){
+  .hero::after{height:140px !important;background-size:auto 100% !important;background-repeat:repeat-x !important}
+  .hero .hero-c{width:min(76%,650px)}
+  .hero .row{width:100%;max-width:100%;gap:8px}
+  .hero .gpill{flex:0 1 min(56vw,340px);width:min(56vw,340px) !important;max-width:calc(100vw - 150px);padding:0 16px}
+  .hero .hero-ctas .btn{padding:12px 18px}
+}
+@media(max-width:600px){
+  .hero{min-height:760px;padding:108px 20px 130px;place-items:start center}
+  .hero .hero-c{width:100%;max-width:100%}
+  .hero h1{font-size:clamp(1.8rem,9.3vw,3.5rem);gap:.12em}
+  .hero .row{width:100%;flex-wrap:wrap;gap:8px}
+  .hero .gpill{flex:1 1 220px;width:auto !important;max-width:100%;height:48px;padding:0 14px;font-size:.72rem}
+  .hero .rt{gap:7px}
+  .hero .hero-ctas{flex-wrap:wrap;gap:10px;margin-top:25px}
+  .hero .hero-ctas .btn{padding:11px 15px;font-size:.8rem}
+  .hero::after{height:112px !important;background-size:auto 100% !important}
+  .hero .hint{left:16px;right:16px;width:auto;white-space:normal;text-align:center;font-size:.78rem;bottom:14px}
+}
+@media(prefers-reduced-motion:reduce){.hero::after{animation:none!important}}
+
+
+/* v9 — remove the inaccurate paint-drip overlay completely.
+   Keep the approved dark ribbon artwork and readable scroll hint. */
+.hero::after{
+  content:none !important;
+  display:none !important;
+  background:none !important;
+}
+.hero .hint{
+  color:#f4f7fb !important;
+  text-shadow:0 2px 10px rgba(0,0,0,.48) !important;
+}
+.hero .hint span{
+  color:#f4f7fb !important;
+}
+@media(max-width:900px){
+  .hero::after{display:none !important;content:none !important;}
+}
+
+
+/* =====================  v10 — exact match to the reference cover  =====================
+   Background plate = reference artwork with nav, name, pill, buttons and scroll hint
+   removed, so every one of those stays a real, working HTML element on top of it. */
+.hero{background:#0c1620}
+.hero .spot,.hero .gr,.hero .gl{display:none}
+.hero-art::after{content:none!important;display:none!important}
+.hero-art img{object-position:center bottom;transform-origin:50% 100%}
+
+/* glass nav */
+.pn{background:rgba(28,34,40,.62);border:1px solid rgba(255,255,255,.22);box-shadow:0 10px 40px rgba(0,0,0,.35),inset 0 1px 0 rgba(255,255,255,.12);backdrop-filter:blur(22px) saturate(1.2);-webkit-backdrop-filter:blur(22px) saturate(1.2);padding:8px;gap:4px}
+.logo{background:#10151d;border:2px solid #d6ff1f;color:#d6ff1f}
+.nl{color:#fff;font-weight:600;font-size:.95rem;padding:9px 16px}
+.nl:hover{color:#fff;background:rgba(255,255,255,.12)}
+.nl.on{color:#0d130a;background:#c6ff2e}
+.say{background:#090d12;color:#fff;border:1px solid rgba(255,255,255,.08);padding:10px 18px;margin-left:6px}
+.say:hover{background:#c6ff2e;color:#0d130a}
+
+/* name: Inter Black, chrome white with a lime B */
+.hero h1{font-family:Inter,system-ui,sans-serif;font-weight:900;letter-spacing:-.02em;line-height:1;gap:.24em}
+.hero .lt{background:linear-gradient(105deg,transparent 42%,rgba(255,255,255,.95) 50%,transparent 58%) 160% 0/300% 100% no-repeat,linear-gradient(180deg,#fff 8%,#c3c7cc 100%);-webkit-background-clip:text;background-clip:text}
+.hero .nb .lt{background:linear-gradient(105deg,transparent 42%,rgba(255,255,255,.9) 50%,transparent 58%) 160% 0/300% 100% no-repeat,linear-gradient(180deg,#eaff74,#bdff2a 60%,#9fe600);-webkit-background-clip:text;background-clip:text}
+.hero .nm{filter:drop-shadow(0 6px 18px rgba(255,255,255,.16))}
+
+/* role, command pill, buttons, scroll hint */
+.hero .role{font-weight:300;font-size:clamp(1.05rem,1.45vw,1.7rem);margin:0 0 .8vw 4px}
+.hero .role b{font-weight:700}.hero .role span{color:#b9c0c9;font-weight:300}
+.hero .row{gap:16px}
+.hero .gpill{background:linear-gradient(180deg,rgba(255,255,255,.1),rgba(255,255,255,.04));border:1px solid rgba(255,255,255,.28);padding:0 24px;font-size:clamp(.78rem,.95vw,1.05rem)}
+.hero .rt{gap:14px}
+.hero .rt .ex{width:clamp(38px,2.7vw,48px);height:clamp(38px,2.7vw,48px)}
+.hero .chip{display:grid;place-items:center;height:clamp(42px,3.1vw,56px);padding:0 clamp(18px,1.6vw,28px);font-weight:600;font-size:clamp(.9rem,1.05vw,1.15rem)}
+.hero .hero-ctas .btn{display:inline-flex;align-items:center;height:clamp(46px,3.4vw,62px);padding:0 clamp(22px,1.9vw,34px);font-size:clamp(.88rem,1.05vw,1.15rem);font-weight:700}
+.hero .hero-ctas .btn.ghost{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.3);color:#fff}
+.hero .hint{bottom:clamp(14px,2vw,40px)!important;gap:clamp(14px,1.6vw,26px);font-weight:500;font-size:clamp(.85rem,1.05vw,1.15rem);color:#2c313a!important;text-shadow:none!important}
+.hero .hint span{color:#2c313a!important;font-size:1.2em}
+.hero .hint:hover{color:#4c7a00!important}
+
+/* desktop placement (matches the reference proportions) */
+@media(min-width:901px){
+  .hero{min-height:max(100svh,640px);place-items:start start;padding:clamp(150px,26.5svh,300px) 5.5vw 150px}
+  .hero .hero-c{width:auto;max-width:none}
+  .hero h1{font-size:clamp(2.6rem,7.2vw,9.5rem)}
+  .hero .row{margin-top:1.7vw}
+  .hero .gpill{width:clamp(300px,23.7vw,460px)!important;height:clamp(48px,3.3vw,64px)}
+  .hero .hero-ctas{margin-top:2.1vw}
+  .hero-art{bottom:-3.6vw} /* lowers the paint drips; raise/lower this value to taste */
+}
+/* mobile: keep the name legible over the artwork */
+@media(max-width:900px){
+  .hero-art img{object-position:70% bottom}
+  .hero-art::after{content:""!important;display:block!important;background:linear-gradient(180deg,rgba(10,18,26,.8),transparent 58%)!important;animation:none!important;mix-blend-mode:normal}
+}
+
+
+/* =====================  v12 — final polish (look & layout unchanged)  ===================== */
+body{text-rendering:optimizeLegibility;font-optical-sizing:auto}
+::selection{background:#c6ff2e;color:#0b1220}
+.progress{background:linear-gradient(90deg,#0c1620,#6aa800,#c6ff2e)}              /* matches the hero palette */
+.hero :focus-visible,.pn :focus-visible{outline:3px solid #c6ff2e;outline-offset:3px} /* visible on the dark hero */
+/* button arrows nudge on hover */
+.hero .btn span{display:inline-block;transition:transform .3s cubic-bezier(.2,.8,.2,1)}
+.hero .btn.lime:hover span{transform:translateX(5px)}
+.hero .btn.ghost:hover span{transform:translate(3px,-3px)}
+.say{transition:background .25s,color .25s,transform .25s}

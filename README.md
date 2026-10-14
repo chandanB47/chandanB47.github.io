@@ -99,3 +99,33 @@ Live site: [https://chandanB47.github.io/](https://chandanB47.github.io/)
 <p align="center">
   <em>Learning continuously. Building practically. Improving with every iteration.</em>
 </p>
+
+## Hero image update
+
+The hero uses the included high-resolution `assets/hero-bg.jpg` (1920×1072) and `assets/hero-bg-mobile.jpg` for smaller screens. The title, navigation, SQL pill, and buttons remain real HTML elements for responsive layout, accessibility, and working links. Only hero layout/styling was adjusted; the About, Skills, Work, Experience, Journey, Stats, and Contact sections were left intact.
+
+
+### Hero image quality and spacing update
+- The hero now loads a high-quality WebP rendition of the original 2048 × 1143 ribbon artwork, with JPEG fallbacks.
+- The heading is slightly narrower, with a clearer gap before the lime `B`.
+- Heavy blur on the hero artwork entrance was removed; the slow motion is restrained to preserve sharpness.
+- Other portfolio sections and their content were not edited as part of this update.
+
+
+## Hero artwork quality
+
+- `assets/hero-bg.webp` is the optimized desktop hero artwork used by the live page.
+- `assets/hero-bg-16k.webp` is a 15,360-pixel-wide archival master for future edits and high-resolution exports.
+- `assets/hero-bg-mobile.webp` is the responsive mobile artwork.
+- `assets/hero-bg-mobile-8k.webp` is the high-resolution mobile master.
+- `assets/paint-tear.svg` adds the neon-lime, black, and white paint-drip transition at the bottom of the hero.
+- The original content sections and interactions are preserved; the hero controls remain real HTML links, not flattened into a screenshot.
+
+Note: the 16K files are high-resolution upscales of the supplied artwork, not newly captured 16K source detail. The site loads optimized assets for performance.
+
+
+## Hero update (v10)
+
+- The hero background (`assets/hero-bg*.webp/.jpg`) is now built from the reference cover artwork, with the nav, name, command pill, buttons and scroll hint removed so they remain real HTML.
+- The name is set in Inter Black; the dark glass nav, lime active pill, and the neon paint-drip edge now match the reference.
+- Previous artwork and the old 16K/8K masters are in `assets/archive/`.

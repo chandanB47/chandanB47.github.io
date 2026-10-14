@@ -24,8 +24,8 @@ const P = [
  {t:"Student Management System",c:"python",ic:"🎓",wide:1,col:"#eaffb0",d:"A Python command-line application for creating, viewing, updating, deleting and searching student records. Demonstrates CRUD operations and menu-driven programming with clean and modular code.",s:[["CRUD","Operations"],["Student","Records"],["CLI","Application"],["Modular","Code structure"]],g:["Python","CRUD","CLI","File Handling","OOP","Data Management"],det:1},
  {t:"Data Science Learning Journey",c:"python sql excel analytics",ic:"📖",wide:1,col:"#e5dcff",d:"My learning journey covering Python, SQL, Excel, Power BI, Statistics, Machine Learning and Gen AI with practice exercises and project documentation.",g:["Python","SQL","Excel","Power BI","Statistics","Machine Learning","Gen AI"]}
 ];
-$("#projects").innerHTML = P.map(p => `<article class="pj ${p.wide?"wide ":""}rv" data-c="${p.c}" style="--t:${p.col}"><header><span class="ic">${p.ic}</span><h3>${p.t}</h3>${p.f?'<span class="feat">★ Featured Project</span>':""}</header><p>${p.d}</p>${p.s?`<div class="stats">${p.s.map(x=>`<div><b>${x[0]}</b>${x[1]}</div>`).join("")}</div>`:""}<div class="tags">${p.g.map(x=>`<span>${x}</span>`).join("")}</div><div class="links">${p.det?`<a class="btn lime" href="${p.url || GH}" target="_blank" rel="noopener">View on GitHub ↗</a><a class="btn ghost" href="${p.url || GH}" target="_blank" rel="noopener">View Project Details ↗</a>`:`<a class="tx" href="${p.url || GH}" target="_blank" rel="noopener">View on GitHub ↗</a>`}</div></article>`).join("");
-const F = [["all","All Projects"],["sql","SQL"],["python","Python"],["analytics","Analytics"],["excel","Excel"],["other","Other"]];
+$("#projects").innerHTML = P.map(p => `<article class="pj ${p.wide?"wide ":""}rv" data-c="${p.c}" style="--t:${p.col}"><header><span class="ic">${p.ic}</span><h3>${p.t}</h3>${p.f?'<span class="feat">★ Featured project</span>':""}</header><p>${p.d}</p>${p.s?`<div class="stats">${p.s.map(x=>`<div><b>${x[0]}</b>${x[1]}</div>`).join("")}</div>`:""}<div class="tags">${p.g.map(x=>`<span>${x}</span>`).join("")}</div><div class="links">${p.det?`<a class="btn lime" href="${p.url || GH}" target="_blank" rel="noopener">View on GitHub ↗</a><a class="btn ghost" href="${p.url || GH}" target="_blank" rel="noopener">View Project Details ↗</a>`:`<a class="tx" href="${p.url || GH}" target="_blank" rel="noopener">View on GitHub ↗</a>`}</div></article>`).join("");
+const F = [["all","All projects"],["sql","SQL"],["python","Python"],["analytics","Analytics"],["excel","Excel"],["other","Other"]];
 $("#filters").innerHTML = F.map((f,i) => `<button data-f="${f[0]}" class="${i?"":"on"}">${f[1]}</button>`).join("");
 $("#filters").addEventListener("click", e => { const b = e.target.closest("button"); if (!b) return;
   $$("#filters button").forEach(x => x.classList.toggle("on", x === b));
@@ -80,3 +80,176 @@ cp.addEventListener("click", async () => { try { await navigator.clipboard.write
 
 $("#cover").addEventListener("click", e => { if (!e.target.closest("a,button")) document.getElementById("about").scrollIntoView({behavior:reduce?"auto":"smooth"}); });
 })();
+
+
+/* =====================================================================
+   CINEMATIC MOTION LAYER — additive; core site logic above is untouched
+   ===================================================================== */
+(() => { try {
+const $ = s => document.querySelector(s), $$ = s => [...document.querySelectorAll(s)];
+const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches, fine = matchMedia("(pointer:fine)").matches;
+const lerp = (a,b,t) => a+(b-a)*t, clamp = (v,a,b) => Math.min(b, Math.max(a,v));
+const body = document.body, root = document.documentElement, NS = "http://www.w3.org/2000/svg";
+const mk = (tag, cls) => { const e = document.createElement(tag); if (cls) e.className = cls; return e; };
+if (reduce) return;
+
+/* 1 ─ film grain + vignette */
+body.appendChild(mk("div","cin-grain")); body.appendChild(mk("div","cin-vig"));
+
+/* 2 ─ loader → lime curtain wipe */
+const ld = $("#loader");
+if (ld) {
+  const wp = mk("div"); wp.id = "wipe"; body.appendChild(wp);
+  new MutationObserver((_, ob) => { if (ld.classList.contains("out")) { wp.classList.add("out"); ob.disconnect(); setTimeout(() => wp.remove(), 1700); } }).observe(ld, {attributes:true, attributeFilter:["class"]});
+}
+
+/* 3 ─ split headings into masked words */
+function split(el){
+  let n = 0; el.setAttribute("aria-label", el.innerHTML.replace(/<br\s*\/?>/gi," ").replace(/<[^>]+>/g,"").replace(/\s+/g," ").trim());
+  (function walk(node){ [...node.childNodes].forEach(c => {
+    if (c.nodeType === 3) {
+      const f = document.createDocumentFragment();
+      c.textContent.split(/(\s+)/).forEach(p => { if (!p) return;
+        if (/^\s+$/.test(p)) { f.appendChild(document.createTextNode(" ")); return; }
+        const w = mk("span","w"), i = mk("span","wi"); w.setAttribute("aria-hidden","true"); i.style.setProperty("--i", n++); i.textContent = p; w.appendChild(i); f.appendChild(w); });
+      c.replaceWith(f);
+    } else if (c.nodeType === 1 && c.tagName !== "BR") walk(c);
+  }); })(el);
+}
+$$("h2").forEach(split);
+
+/* 4 ─ stagger delays inside grids */
+[["#skillgrid .sk",3,.09],[".projects .pj",2,.14],[".steps .step",4,.1],["#what .wc",4,.09],[".g3 .stat",3,.12]].forEach(([sel,m,g]) => $$(sel).forEach((el,i) => el.style.setProperty("--dl", (i%m)*g + "s")));
+
+/* 6 ─ marquee ribbons respond to scroll velocity (speed + skew) */
+const xw = $(".xwrap");
+if (xw) {
+  let lastY = scrollY, vel = 0, rate = 1, sk = 0, run = false, mq = [];
+  const grab = () => { mq = document.getAnimations().filter(a => a.animationName === "mq"); };
+  const tick = () => {
+    if (!mq.length) grab();
+    const dy = scrollY-lastY; lastY = scrollY; vel = lerp(vel, dy, .14);
+    rate = lerp(rate, 1 + clamp(Math.abs(vel),0,70)*.09, .12); sk = lerp(sk, clamp(-vel*.22,-9,9), .12);
+    mq.forEach(a => a.playbackRate = rate); xw.style.setProperty("--sk", sk.toFixed(2)+"deg");
+    if (Math.abs(vel) > .05 || Math.abs(rate-1) > .01 || Math.abs(sk) > .02) requestAnimationFrame(tick);
+    else { run = false; mq.forEach(a => a.playbackRate = 1); xw.style.setProperty("--sk","0deg"); }
+  };
+  addEventListener("scroll", () => { if (!run) { run = true; requestAnimationFrame(tick); } }, {passive:true});
+}
+
+/* 7 ─ contact blob parallax */
+const cb = $(".contact .blob");
+if (cb) { let t = 0; addEventListener("scroll", () => { if (t) return; t = requestAnimationFrame(() => { t = 0; const r = cb.parentElement.getBoundingClientRect(); if (r.bottom < 0 || r.top > innerHeight) return; cb.style.translate = `0 ${((r.top - innerHeight*.4)*-.14).toFixed(1)}px`; }); }, {passive:true}); }
+
+/* 8 ─ desktop-only: card glare/tilt + custom cursor */
+if (fine) {
+  $$(".pj").forEach(c => { const g = mk("i","glr"); g.setAttribute("aria-hidden","true"); c.appendChild(g);
+    c.addEventListener("pointermove", e => { const r = c.getBoundingClientRect(), x = (e.clientX-r.left)/r.width, y = (e.clientY-r.top)/r.height; c.style.setProperty("--gx", x*100+"%"); c.style.setProperty("--gy", y*100+"%"); c.style.setProperty("--px", (x-.5)*2); c.style.setProperty("--py", (y-.5)*2); });
+    c.addEventListener("pointerleave", () => { c.style.setProperty("--px",0); c.style.setProperty("--py",0); }); });
+  $$(".sk").forEach(c => {
+    c.addEventListener("pointermove", e => { const r = c.getBoundingClientRect(), x = (e.clientX-r.left)/r.width-.5, y = (e.clientY-r.top)/r.height-.5; c.style.transition = "border-color .3s,box-shadow .3s"; c.style.transform = `perspective(800px) rotateX(${(-y*10).toFixed(2)}deg) rotateY(${(x*12).toFixed(2)}deg) translateY(-8px)`; });
+    c.addEventListener("pointerleave", () => { c.style.transition = ""; c.style.transform = ""; }); });
+
+  const dot = mk("div","cur-dot"), ring = mk("div","cur-ring"), lab = mk("span"); ring.appendChild(lab); body.append(dot, ring); body.classList.add("cur");
+  let x = innerWidth/2, y = innerHeight/2, rx = x, ry = y, run = false;
+  const loop = () => { rx = lerp(rx, x, .17); ry = lerp(ry, y, .17); ring.style.transform = `translate3d(${rx.toFixed(1)}px,${ry.toFixed(1)}px,0)`;
+    if (Math.abs(x-rx) > .1 || Math.abs(y-ry) > .1) requestAnimationFrame(loop); else run = false; };
+  const state = t => { ring.className = "cur-ring"; lab.textContent = "";
+    if (t.closest(".sk")) { ring.classList.add("lbl"); lab.textContent = "Open"; }
+    else if (t.closest("a,button,.copy")) ring.classList.add("hov");
+    else if (t.closest(".pj")) ring.classList.add("soft");
+    else if (t.closest("#cover")) { ring.classList.add("lbl"); lab.textContent = "Scroll"; } };
+  addEventListener("pointermove", e => { x = e.clientX; y = e.clientY; dot.style.transform = `translate3d(${x}px,${y}px,0)`; root.classList.add("cur-on"); if (!run) { run = true; requestAnimationFrame(loop); } }, {passive:true});
+  document.addEventListener("pointerover", e => state(e.target));
+  addEventListener("pointerdown", () => ring.style.scale = ".8"); addEventListener("pointerup", () => ring.style.scale = "");
+  root.addEventListener("mouseleave", () => root.classList.remove("cur-on"));
+}
+} catch (err) { console.warn("cinematic layer skipped:", err); } })();
+
+
+/* =====================  v2 ADDITIONS  ===================== */
+(() => { try {
+const $ = s => document.querySelector(s), $$ = s => [...document.querySelectorAll(s)];
+const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches, fine = matchMedia("(pointer:fine)").matches;
+const lerp = (a,b,t) => a+(b-a)*t, clamp = (v,a,b) => Math.min(b, Math.max(a,v));
+const body = document.body, root = document.documentElement;
+if (reduce) return;
+
+/* cinematic letterbox bars: frame the intro, then open */
+["t","b"].forEach(k => { const d = document.createElement("div"); d.className = "cin-bar " + k; body.appendChild(d); });
+const openBars = () => setTimeout(() => $$(".cin-bar").forEach(b => b.classList.add("open")), 1100);
+if (body.classList.contains("go")) openBars();
+else { const w = new MutationObserver(() => { if (body.classList.contains("go")) { w.disconnect(); openBars(); } }); w.observe(body, {attributes:true, attributeFilter:["class"]}); }
+setTimeout(() => $$(".cin-bar").forEach(b => b.classList.add("open")), 7000); /* safety */
+
+/* heading parallax scrub */
+const hs = $$("h2"); let pt = 0;
+addEventListener("scroll", () => { if (pt) return; pt = requestAnimationFrame(() => { pt = 0; hs.forEach(h => { const r = h.getBoundingClientRect(); if (r.bottom < -100 || r.top > innerHeight + 100) return; h.style.translate = `0 ${((r.top - innerHeight*.5)*-.07).toFixed(1)}px`; }); }); }, {passive:true});
+
+/* smooth inertial scrolling (desktop mouse/trackpad wheel + anchor links) */
+if (fine) {
+  let cur = scrollY, tgt = scrollY, on = false, k = .085;
+  const max = () => root.scrollHeight - innerHeight;
+  const free = () => !body.classList.contains("lock") && !($("#md") && !$("#md").hidden);
+  const step = () => { cur = lerp(cur, tgt, k);
+    if (Math.abs(tgt-cur) < .4) { cur = tgt; scrollTo(0, cur); on = false; root.classList.remove("lenis"); return; }
+    scrollTo(0, cur); requestAnimationFrame(step); };
+  const go = (y, kk) => { cur = scrollY; tgt = clamp(y, 0, max()); k = kk; if (!on) { on = true; root.classList.add("lenis"); requestAnimationFrame(step); } };
+  addEventListener("wheel", e => { if (e.ctrlKey || !free() || Math.abs(e.deltaX) > Math.abs(e.deltaY)) return; e.preventDefault();
+    const base = on ? tgt : scrollY; go(base + e.deltaY*(e.deltaMode === 1 ? 32 : 1), .085); }, {passive:false});
+  addEventListener("scroll", () => { if (!on) { cur = tgt = scrollY; } }, {passive:true});
+  document.addEventListener("click", e => { const a = e.target.closest('a[href^="#"]'); if (!a || !free()) return;
+    const id = a.getAttribute("href").slice(1), el = id ? document.getElementById(id) : null; if (id && !el) return;
+    e.preventDefault(); go(!id || id === "top" ? 0 : el.getBoundingClientRect().top + scrollY - 90, .07); });
+}
+} catch (err) { console.warn("v2 layer skipped:", err); } })();
+
+
+/* =====================  v3 — NEW HERO ENGINE (3D ribbon knot)  ===================== */
+(() => { try {
+const $ = s => document.querySelector(s);
+const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches, fine = matchMedia("(pointer:fine)").matches;
+const lerp = (a,b,t) => a+(b-a)*t, clamp = (v,a,b) => Math.min(b, Math.max(a,v));
+const hero = $("#cover"), heroC = hero && $(".hero-c"), art = hero && $(".hero-art img");
+if (!hero || !heroC) return;
+const dpr = Math.min(devicePixelRatio || 1, 1.5);
+
+/* ---- orchestration ---- */
+const spot = document.createElement("div"), dust = document.createElement("canvas");
+spot.className = "cin-spot"; dust.className = "cin-dust"; hero.insertBefore(dust, hero.firstChild); hero.insertBefore(spot, hero.firstChild);
+if (reduce) return;
+const gr = $(".hero .gr"), gl = $(".hero .gl"), sp0 = $(".hero .spot");
+const M = {tx:0, ty:0, x:0, y:0, sx:0, sy:0, tsx:0, tsy:0};
+hero.addEventListener("pointermove", e => { const r = hero.getBoundingClientRect(); M.tx = (e.clientX-r.left)/r.width-.5; M.ty = (e.clientY-r.top)/r.height-.5; M.tsx = e.clientX-r.left; M.tsy = e.clientY-r.top; spot.classList.add("on"); });
+hero.addEventListener("pointerleave", () => { M.tx = 0; M.ty = 0; if (fine) spot.classList.remove("on"); });
+
+const dctx = dust.getContext("2d"); let DW = 0, DH = 0, DP = [];
+const sprite = rgb => { const c = document.createElement("canvas"); c.width = c.height = 64; const g = c.getContext("2d"), gd = g.createRadialGradient(32,32,0,32,32,32); gd.addColorStop(0,`rgba(${rgb},1)`); gd.addColorStop(.4,`rgba(${rgb},.4)`); gd.addColorStop(1,`rgba(${rgb},0)`); g.fillStyle = gd; g.fillRect(0,0,64,64); return c; };
+const spr = [sprite("255,255,255"), sprite("198,255,46")];
+function dsize(){ DW = hero.clientWidth; DH = hero.clientHeight; dust.width = DW*dpr; dust.height = DH*dpr; dctx.setTransform(dpr,0,0,dpr,0,0);
+  const N = clamp(Math.round(DW/34), 16, 46); DP = Array.from({length:N}, () => { const z = .2 + Math.random()*.8; return {x:Math.random()*DW, y:Math.random()*DH, z, r:3+z*16, vx:(Math.random()-.5)*.1, vy:-(.05+Math.random()*.16)*z, a:(.14+Math.random()*.4)*z, ph:Math.random()*6.28, sp:.4+Math.random()*1.2, c:Math.random()<.26?1:0}; }); }
+dsize(); addEventListener("resize", dsize);
+
+let live = true, raf = 0, last = performance.now();
+function frame(t){
+  raf = 0; if (!live) return;
+  const dt = Math.min(t-last, 50)/16.7; last = t;
+  if (!fine) { M.tx = Math.sin(t/2600)*.3; M.ty = Math.cos(t/3100)*.25; M.tsx = hero.clientWidth*(.55+M.tx); M.tsy = hero.clientHeight*(.45+M.ty); spot.classList.add("on"); }
+  M.x = lerp(M.x, M.tx, .06*dt); M.y = lerp(M.y, M.ty, .06*dt); M.sx = lerp(M.sx, M.tsx, .1*dt); M.sy = lerp(M.sy, M.tsy, .1*dt);
+  if (art) art.style.transform = `translate3d(${(-M.x*30).toFixed(1)}px,${(-M.y*18 + scrollY*.1).toFixed(1)}px,0) scale(1.06)`;
+  spot.style.transform = `translate3d(${M.sx.toFixed(1)}px,${M.sy.toFixed(1)}px,0)`;
+  if (gr) gr.style.translate = `${(M.x*90).toFixed(1)}px ${(M.y*60).toFixed(1)}px`;
+  if (gl) gl.style.translate = `${(-M.x*70).toFixed(1)}px ${(-M.y*50).toFixed(1)}px`;
+  if (sp0) sp0.style.translate = `${(M.x*-40).toFixed(1)}px ${(M.y*-24).toFixed(1)}px`;
+  const y = scrollY, p = clamp(y/Math.max(hero.offsetHeight,1), 0, 1);
+  heroC.style.translate = `${(-M.x*12).toFixed(1)}px ${(-M.y*8).toFixed(1)}px`;
+  heroC.style.transform = `translate3d(0,${(y*.24).toFixed(1)}px,0) scale(${(1-p*.08).toFixed(4)})`; heroC.style.opacity = (1-p*1.2).toFixed(3);
+  dctx.clearRect(0,0,DW,DH);
+  for (const q of DP) { q.x += q.vx*dt; q.y += q.vy*dt; if (q.y < -30) { q.y = DH+30; q.x = Math.random()*DW; } if (q.x < -30) q.x = DW+30; if (q.x > DW+30) q.x = -30;
+    dctx.globalAlpha = q.a*(.62 + .38*Math.sin(t*.0012*q.sp + q.ph)); dctx.drawImage(spr[q.c], q.x - M.x*70*q.z - q.r, q.y - M.y*50*q.z - q.r, q.r*2, q.r*2); }
+  dctx.globalAlpha = 1; raf = requestAnimationFrame(frame);
+}
+const kick = () => { if (!raf && live) { last = performance.now(); raf = requestAnimationFrame(frame); } };
+new IntersectionObserver(es => { live = es[0].isIntersecting; if (live) kick(); }, {threshold:0}).observe(hero);
+kick();
+} catch (err) { console.warn("hero engine skipped:", err); } })();
