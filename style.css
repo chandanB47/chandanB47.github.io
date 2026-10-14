@@ -192,8 +192,8 @@ footer{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;paddin
 @media(max-width:700px){.hero .hero-c{width:90vw}.gpill{width:46%}.rt{margin-right:0}}
 
 /* torn paper hero edge */
-.hero{padding-bottom:200px}
-.torn{position:absolute;left:0;bottom:-4px;width:100%;height:clamp(70px,10vw,150px);z-index:3;display:block;pointer-events:none}
+.hero{padding-bottom:190px}
+.torn{position:absolute;left:0;bottom:-2px;width:100%;height:clamp(70px,10vw,150px);z-index:3;display:block;pointer-events:none}
 .t1{fill:#bdbdbd;filter:drop-shadow(0 -8px 12px rgba(0,0,0,.55))}.t2{fill:#e9e9e6}.t3{fill:#f6f8fc}
 .xwrap{margin-top:-4px;background:#f6f8fc}
 
@@ -328,7 +328,7 @@ footer{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;paddin
 .hero .hero-c{will-change:transform,opacity}
 .cin-dust{position:absolute;inset:0;width:100%;height:100%;z-index:1;pointer-events:none}
 .cin-spot{position:absolute;left:0;top:0;width:90vmin;height:90vmin;margin:-45vmin 0 0 -45vmin;z-index:1;pointer-events:none;opacity:0;transition:opacity .8s;will-change:transform;
-  background:radial-gradient(closest-side,rgba(255,255,255,.34),rgba(198,255,46,.12) 50%,transparent)}
+  background:radial-gradient(closest-side,rgba(255,255,255,.34),rgba(198,255,46,.12) 45%,transparent)}
 .cin-spot.on{opacity:1}
 .hero .spot,.hero .gr,.hero .gl{will-change:translate}
 
@@ -805,3 +805,42 @@ body{text-rendering:optimizeLegibility;font-optical-sizing:auto}
 .hero .btn.lime:hover span{transform:translateX(5px)}
 .hero .btn.ghost:hover span{transform:translate(3px,-3px)}
 .say{transition:background .25s,color .25s,transform .25s}
+
+
+/* =====================  v13 — mobile + laptop clean-up  ===================== */
+/* the grain layer was 130% wide, which made phones zoom the page out and cut the nav: keep it inside the screen */
+html{overflow-x:clip}
+.cin-grain{inset:0;animation:grain2 .9s steps(1) infinite}
+@keyframes grain2{0%{background-position:0 0}17%{background-position:-40px 30px}34%{background-position:30px -50px}51%{background-position:-30px 40px}68%{background-position:50px 20px}85%{background-position:-20px -30px}}
+
+@media(max-width:900px){
+  .hero{min-height:max(100svh,140vw)}
+  .hero-art img{object-position:center bottom}
+  .hero-art::after{content:none!important;display:none!important}   /* the portrait artwork is already dark behind the text */
+}
+@media(max-width:600px){
+  .hero{min-height:max(100svh,205vw)!important;padding:104px 20px 130px!important}
+  .hero h1{font-size:clamp(2rem,12vw,4.2rem)!important}
+  .hero .rt .ex{display:none}                                       /* decorative icon: lets the pill and 2026 share one row */
+  .hero .gpill{flex:1 1 0!important;min-width:0!important}
+  .hero .row{flex-wrap:nowrap!important}
+  /* nav fits the screen: logo is redundant with Home on phones */
+  .logo{display:none}
+  .pn{padding:6px;gap:2px}
+  .nl{padding:8px 7px;font-size:.72rem}
+  .say{padding:8px 10px;font-size:.72rem;margin-left:2px}
+}
+
+
+/* =====================  v14 — smooth scrolling, normal cursor, hero lock  ===================== */
+body.cur,body.cur a,body.cur button,body.cur .sk,body.cur #cover{cursor:auto}
+body.cur a,body.cur button,body.cur .sk{cursor:pointer}
+.cur-dot,.cur-ring{display:none!important}
+/* hero can never be scrolled sideways (that cut the left side of the text off) */
+.hero{overflow:hidden;overflow:clip}
+/* lighter effects while scrolling */
+.cin-grain{animation:none}
+.cin-spot{mix-blend-mode:normal!important;background:radial-gradient(closest-side,rgba(198,255,46,.14),rgba(255,255,255,.05) 45%,transparent)!important}
+.pn{backdrop-filter:blur(14px) saturate(1.2);-webkit-backdrop-filter:blur(14px) saturate(1.2)}
+/* scroll hint stays readable when paint drips pass behind it */
+.hero .hint{background:rgba(246,248,252,.92);padding:7px 20px;border-radius:999px}

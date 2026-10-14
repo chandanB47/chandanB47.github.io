@@ -150,19 +150,7 @@ if (fine) {
     c.addEventListener("pointermove", e => { const r = c.getBoundingClientRect(), x = (e.clientX-r.left)/r.width-.5, y = (e.clientY-r.top)/r.height-.5; c.style.transition = "border-color .3s,box-shadow .3s"; c.style.transform = `perspective(800px) rotateX(${(-y*10).toFixed(2)}deg) rotateY(${(x*12).toFixed(2)}deg) translateY(-8px)`; });
     c.addEventListener("pointerleave", () => { c.style.transition = ""; c.style.transform = ""; }); });
 
-  const dot = mk("div","cur-dot"), ring = mk("div","cur-ring"), lab = mk("span"); ring.appendChild(lab); body.append(dot, ring); body.classList.add("cur");
-  let x = innerWidth/2, y = innerHeight/2, rx = x, ry = y, run = false;
-  const loop = () => { rx = lerp(rx, x, .17); ry = lerp(ry, y, .17); ring.style.transform = `translate3d(${rx.toFixed(1)}px,${ry.toFixed(1)}px,0)`;
-    if (Math.abs(x-rx) > .1 || Math.abs(y-ry) > .1) requestAnimationFrame(loop); else run = false; };
-  const state = t => { ring.className = "cur-ring"; lab.textContent = "";
-    if (t.closest(".sk")) { ring.classList.add("lbl"); lab.textContent = "Open"; }
-    else if (t.closest("a,button,.copy")) ring.classList.add("hov");
-    else if (t.closest(".pj")) ring.classList.add("soft");
-    else if (t.closest("#cover")) { ring.classList.add("lbl"); lab.textContent = "Scroll"; } };
-  addEventListener("pointermove", e => { x = e.clientX; y = e.clientY; dot.style.transform = `translate3d(${x}px,${y}px,0)`; root.classList.add("cur-on"); if (!run) { run = true; requestAnimationFrame(loop); } }, {passive:true});
-  document.addEventListener("pointerover", e => state(e.target));
-  addEventListener("pointerdown", () => ring.style.scale = ".8"); addEventListener("pointerup", () => ring.style.scale = "");
-  root.addEventListener("mouseleave", () => root.classList.remove("cur-on"));
+  /* custom cursor removed: the normal mouse pointer is used */
 }
 } catch (err) { console.warn("cinematic layer skipped:", err); } })();
 
@@ -187,7 +175,7 @@ const hs = $$("h2"); let pt = 0;
 addEventListener("scroll", () => { if (pt) return; pt = requestAnimationFrame(() => { pt = 0; hs.forEach(h => { const r = h.getBoundingClientRect(); if (r.bottom < -100 || r.top > innerHeight + 100) return; h.style.translate = `0 ${((r.top - innerHeight*.5)*-.07).toFixed(1)}px`; }); }); }, {passive:true});
 
 /* smooth inertial scrolling (desktop mouse/trackpad wheel + anchor links) */
-if (fine) {
+if (false) { /* custom smooth-scroll removed: native scrolling is smoother */
   let cur = scrollY, tgt = scrollY, on = false, k = .085;
   const max = () => root.scrollHeight - innerHeight;
   const free = () => !body.classList.contains("lock") && !($("#md") && !$("#md").hidden);
@@ -219,9 +207,10 @@ const spot = document.createElement("div"), dust = document.createElement("canva
 spot.className = "cin-spot"; dust.className = "cin-dust"; hero.insertBefore(dust, hero.firstChild); hero.insertBefore(spot, hero.firstChild);
 if (reduce) return;
 const gr = $(".hero .gr"), gl = $(".hero .gl"), sp0 = $(".hero .spot");
+let lastMove = -1e9;
 const M = {tx:0, ty:0, x:0, y:0, sx:0, sy:0, tsx:0, tsy:0};
-hero.addEventListener("pointermove", e => { const r = hero.getBoundingClientRect(); M.tx = (e.clientX-r.left)/r.width-.5; M.ty = (e.clientY-r.top)/r.height-.5; M.tsx = e.clientX-r.left; M.tsy = e.clientY-r.top; spot.classList.add("on"); });
-hero.addEventListener("pointerleave", () => { M.tx = 0; M.ty = 0; if (fine) spot.classList.remove("on"); });
+hero.addEventListener("pointermove", e => { lastMove = performance.now(); const r = hero.getBoundingClientRect(); M.tx = (e.clientX-r.left)/r.width-.5; M.ty = (e.clientY-r.top)/r.height-.5; M.tsx = e.clientX-r.left; M.tsy = e.clientY-r.top; spot.classList.add("on"); });
+hero.addEventListener("pointerleave", () => { M.tx = 0; M.ty = 0; lastMove = -1e9; });
 
 const dctx = dust.getContext("2d"); let DW = 0, DH = 0, DP = [];
 const sprite = rgb => { const c = document.createElement("canvas"); c.width = c.height = 64; const g = c.getContext("2d"), gd = g.createRadialGradient(32,32,0,32,32,32); gd.addColorStop(0,`rgba(${rgb},1)`); gd.addColorStop(.4,`rgba(${rgb},.4)`); gd.addColorStop(1,`rgba(${rgb},0)`); g.fillStyle = gd; g.fillRect(0,0,64,64); return c; };
@@ -234,7 +223,7 @@ let live = true, raf = 0, last = performance.now();
 function frame(t){
   raf = 0; if (!live) return;
   const dt = Math.min(t-last, 50)/16.7; last = t;
-  if (!fine) { M.tx = Math.sin(t/2600)*.3; M.ty = Math.cos(t/3100)*.25; M.tsx = hero.clientWidth*(.55+M.tx); M.tsy = hero.clientHeight*(.45+M.ty); spot.classList.add("on"); }
+  if (!fine || t - lastMove > 2200) { M.tx = Math.sin(t/2600)*.3; M.ty = Math.cos(t/3100)*.25; M.tsx = hero.clientWidth*(.55+M.tx); M.tsy = hero.clientHeight*(.45+M.ty); spot.classList.add("on"); }
   M.x = lerp(M.x, M.tx, .06*dt); M.y = lerp(M.y, M.ty, .06*dt); M.sx = lerp(M.sx, M.tsx, .1*dt); M.sy = lerp(M.sy, M.tsy, .1*dt);
   if (art) art.style.transform = `translate3d(${(-M.x*30).toFixed(1)}px,${(-M.y*18 + scrollY*.1).toFixed(1)}px,0) scale(1.06)`;
   spot.style.transform = `translate3d(${M.sx.toFixed(1)}px,${M.sy.toFixed(1)}px,0)`;
