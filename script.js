@@ -35,7 +35,7 @@ $("#filters").addEventListener("click", e => { const b = e.target.closest("butto
 document.body.classList.add("lock");
 const words = ["Query","Analyze","Visualize"]; let wi = 0;
 const wt = setInterval(() => { wi = (wi+1)%words.length; const w = $("#ldw"); w.textContent = words[wi]; w.style.animation = "none"; w.offsetHeight; w.style.animation = ""; }, 650);
-const T = reduce ? 1 : 1900, t0 = performance.now();
+const T = reduce ? 1 : 2100, t0 = performance.now();
 (function step(n){ const p = Math.min((n-t0)/T,1), c = Math.round(p*100); $("#ldn").textContent = String(c).padStart(3,"0"); $("#ldb").style.transform = `scaleX(${p})`;
   if (p < 1) return requestAnimationFrame(step);
   clearInterval(wt); setTimeout(() => { $("#loader").classList.add("out"); document.body.classList.remove("lock"); document.body.classList.add("go"); setTimeout(() => $("#loader").remove(), 1000); }, 250); })(t0);
