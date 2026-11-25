@@ -1,7 +1,7 @@
 # Chandan B — Personal Portfolio
 
 <p align="center">
-  <strong>Data Analytics · Business Intelligence · Continuous Learning</strong>
+  <strong>Data & Business Analysis · Business Intelligence · Continuous Learning</strong>
 </p>
 
 <p align="center">
